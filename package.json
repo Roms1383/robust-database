@@ -1,0 +1,32 @@
+{
+  "name": "robust-database",
+  "version": "1.0.0",
+  "description": "Concept to use database with Mongoose, seed and TypeScript",
+  "main": "index.js",
+  "author": "Romain KELIFA <romain.kelifa@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/Roms1383/robust-database.git"
+  },
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "chance": "^1.0.16",
+    "commander": "^2.19.0",
+    "dotenv": "^6.2.0",
+    "inquirer": "^6.2.1",
+    "mongo-seeding": "^3.0.0",
+    "mongoose": "^5.3.13",
+    "typescript": "^3.2.2",
+    "winston": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/mongoose": "^5.3.1",
+    "mongodb": "^3.1.10"
+  },
+  "scripts": {
+    "build": "yarn tsc",
+    "seed": "yarn build && node ./seeding.js",
+    "use": "yarn seed && node ./using.js"
+  }
+}
