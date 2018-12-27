@@ -6,14 +6,17 @@
   "author": "Romain KELIFA <romain.kelifa@gmail.com>",
   "license": "MIT",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/Roms1383/robust-database.git"
+    "type": "git",
+    "url": "https://github.com/Roms1383/robust-database.git"
   },
   "dependencies": {
+    "@types/boom": "^7.2.1",
+    "boom": "^7.3.0",
     "chalk": "^2.4.1",
     "chance": "^1.0.16",
     "commander": "^2.19.0",
     "dotenv": "^6.2.0",
+    "fastify": "^1.13.3",
     "inquirer": "^6.2.1",
     "mongo-seeding": "^3.0.0",
     "mongoose": "^5.3.13",
@@ -27,6 +30,7 @@
   "scripts": {
     "build": "yarn tsc",
     "seed": "yarn build && node ./seeding.js",
-    "use": "yarn seed && node ./using.js"
+    "use": "yarn seed && node ./using.js",
+    "serve": "yarn seed && node ./server.js"
   }
 }
