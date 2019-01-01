@@ -1,5 +1,5 @@
 import { environment } from './environment'
-const { SERVER_LOGGER, SERVER_PORT } = environment
+const { SERVER_LOGGER, SERVER_PORT, SERVER_HOST } = environment
 import * as Fastify from 'fastify'
 import { Server, IncomingMessage, ServerResponse } from 'http'
 import { AddressInfo } from 'net';
@@ -14,7 +14,7 @@ export const run = async () => {
     fastify.route(route)
   })
   
-  await fastify.listen(SERVER_PORT)
+  await fastify.listen(SERVER_PORT, SERVER_HOST)
   const { port } = fastify.server.address() as AddressInfo
   fastify.log.info(`listening on ${port}`)
   return fastify
