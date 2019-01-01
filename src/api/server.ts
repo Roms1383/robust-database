@@ -1,6 +1,9 @@
 require('dotenv').config()
-const yn = require('yn')
-const fastify = require('fastify')({
+import yn from 'yn'
+import * as Fastify from 'fastify'
+import { Server, IncomingMessage, ServerResponse } from 'http'
+import { AddressInfo } from 'net';
+const fastify: Fastify.FastifyInstance<Server, IncomingMessage, ServerResponse> = Fastify({
   logger: yn(process.env.LOGGER)
 })
 
@@ -12,5 +15,7 @@ export const run = async () => {
   })
   
   await fastify.listen(process.env.FASTIFY)
-  fastify.log.info(`listening on ${fastify.server.address().port}`)
+  const { port } = fastify.server.address() as AddressInfo
+  fastify.log.info(`listening on ${port}`)
+  return fastify
 }

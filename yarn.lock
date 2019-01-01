@@ -88,6 +88,10 @@
   version "2.3.4"
   resolved "https://registry.yarnpkg.com/@types/tough-cookie/-/tough-cookie-2.3.4.tgz#821878b81bfab971b93a265a561d54ea61f9059f"
 
+"@types/yn@types/npm-yn":
+  version "2.0.0"
+  resolved "https://codeload.github.com/types/npm-yn/tar.gz/8701ba16a753dfa97e157b9cf6d6aac0d4829b9f"
+
 abab@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/abab/-/abab-2.0.0.tgz#aba0ab4c5eee2d4c79d3487d85450fb2376ebb0f"

@@ -1,18 +1,21 @@
 import { run } from './api/server'
 import * as request from 'request-promise-native'
 import { ObjectID } from 'mongodb'
-import { Types } from 'mongoose';
-import { At } from './at/type';
+import { Types } from 'mongoose'
+import { At } from './at/type'
 require('dotenv').config()
 const format = document => Object.keys(document).reduce((object, key) => document[key] instanceof ObjectID
 ? { ...object, [key]: document[key].toString() }
 : { ...object, [key]: document[key] }
 , {})
+let fastify
 describe('api', async () => {
   beforeAll(async () => {
-    await run()
+    fastify = await run()
   })
-  afterAll(async () => {})
+  afterAll(() => {
+    fastify.close()
+  })
   describe('at', async () => {
     const create : At = { _id: Types.ObjectId('000000000000000000000002'), latitude: 1, longitude: 2, __v: 0 }
     const update : At = { _id: Types.ObjectId('000000000000000000000002'), latitude: 3, longitude: 4, __v: 0 }

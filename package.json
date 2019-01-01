@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@types/boom": "^7.2.1",
+    "@types/yn": "types/npm-yn",
     "boom": "^7.3.0",
     "chalk": "^2.4.1",
     "chance": "^1.0.16",
@@ -38,6 +39,6 @@
     "seed": "yarn build && node ./seeding.js",
     "use": "yarn seed && node ./using.js",
     "serve": "yarn seed && node ./server.js",
-    "test": "yarn seed -d && npx jest --detectOpenHandles"
+    "test": "yarn seed -d && npx jest --detectOpenHandles --forceExit"
   }
 }
