@@ -1,4 +1,5 @@
-require('dotenv').config()
+const { environment } = require('./built/api/environment')
+const { DATABASE_HOST, DATABASE_PORT, DATABASE_NAME } = environment
 const chalk = require('chalk')
 const inquirer = require('inquirer')
 const program = require('commander')
@@ -6,9 +7,9 @@ const { Seeder } = require('mongo-seeding')
 const logger = require('./logger')
 const config = {
   database: {
-    host: process.env.HOST,
-    port: +process.env.PORT,
-    name: process.env.NAME
+    host: DATABASE_HOST,
+    port: DATABASE_PORT,
+    name: DATABASE_NAME
   },
   dropDatabase: true,
 }

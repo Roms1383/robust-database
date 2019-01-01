@@ -1,10 +1,10 @@
-require('dotenv').config()
-import yn from 'yn'
+import { environment } from './environment'
+const { SERVER_LOGGER, SERVER_PORT } = environment
 import * as Fastify from 'fastify'
 import { Server, IncomingMessage, ServerResponse } from 'http'
 import { AddressInfo } from 'net';
 const fastify: Fastify.FastifyInstance<Server, IncomingMessage, ServerResponse> = Fastify({
-  logger: yn(process.env.LOGGER)
+  logger: SERVER_LOGGER
 })
 
 export const run = async () => {
@@ -14,7 +14,7 @@ export const run = async () => {
     fastify.route(route)
   })
   
-  await fastify.listen(process.env.FASTIFY)
+  await fastify.listen(SERVER_PORT)
   const { port } = fastify.server.address() as AddressInfo
   fastify.log.info(`listening on ${port}`)
   return fastify

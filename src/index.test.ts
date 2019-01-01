@@ -3,7 +3,8 @@ import * as request from 'request-promise-native'
 import { ObjectID } from 'mongodb'
 import { Types } from 'mongoose'
 import { At } from './at/type'
-require('dotenv').config()
+import { environment } from './api/environment'
+const { SERVER_HOST, SERVER_PORT } = environment
 const format = document => Object.keys(document).reduce((object, key) => document[key] instanceof ObjectID
 ? { ...object, [key]: document[key].toString() }
 : { ...object, [key]: document[key] }
@@ -24,7 +25,7 @@ describe('api', async () => {
       const expected = seeds.map(format)
       const output = await request({
         json: true,
-        url: `http://${process.env.HOST}:${process.env.FASTIFY}/api/at`,
+        url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at`,
         method: 'GET'
       })
       expect(output).toEqual(expected)
@@ -35,7 +36,7 @@ describe('api', async () => {
       const expected = seeds.map(format).find(({ _id }) => _id === id)
       const output = await request({
         json: true,
-        url: `http://${process.env.HOST}:${process.env.FASTIFY}/api/at/${id}`,
+        url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at/${id}`,
         method: 'GET'
       })
       expect(output).toEqual(expected)
@@ -44,7 +45,7 @@ describe('api', async () => {
       const expected = [format(create)]
       const output = await request({
         json: true,
-        url: `http://${process.env.HOST}:${process.env.FASTIFY}/api/at`,
+        url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at`,
         body: create,
         method: 'POST'
       })
@@ -54,7 +55,7 @@ describe('api', async () => {
       const expected = format(update)
       const output = await request({
         json: true,
-        url: `http://${process.env.HOST}:${process.env.FASTIFY}/api/at/${update._id.toString()}`,
+        url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at/${update._id.toString()}`,
         body: update,
         method: 'PUT'
       })
@@ -64,7 +65,7 @@ describe('api', async () => {
       const expected = format(update)
       const output = await request({
         json: true,
-        url: `http://${process.env.HOST}:${process.env.FASTIFY}/api/at/${update._id.toString()}`,
+        url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at/${update._id.toString()}`,
         method: 'DELETE'
       })
       expect(output).toEqual(expected)

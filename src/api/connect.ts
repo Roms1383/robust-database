@@ -1,4 +1,5 @@
 import * as mongoose from 'mongoose'
-require('dotenv').config()
-const uri = `mongodb://${process.env.HOST}:${process.env.PORT}/${process.env.NAME}`
+import { environment } from './environment'
+const { DATABASE_HOST, DATABASE_PORT, DATABASE_NAME } = environment
+export const uri = `mongodb://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}`
 export const connect = async () : Promise<mongoose.Connection> => mongoose.createConnection(uri, { useNewUrlParser: true })
