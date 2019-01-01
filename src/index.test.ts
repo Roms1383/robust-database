@@ -8,15 +8,14 @@ const format = document => Object.keys(document).reduce((object, key) => documen
 ? { ...object, [key]: document[key].toString() }
 : { ...object, [key]: document[key] }
 , {})
-const version = document => ({ ...document, __v: 0 })
 describe('api', async () => {
   beforeAll(async () => {
     await run()
   })
   afterAll(async () => {})
   describe('at', async () => {
-    const create : At = { _id: Types.ObjectId('000000000000000000000002'), latitude: 1, longitude: 2 }
-    const update : At = { _id: Types.ObjectId('000000000000000000000002'), latitude: 3, longitude: 4 }
+    const create : At = { _id: Types.ObjectId('000000000000000000000002'), latitude: 1, longitude: 2, __v: 0 }
+    const update : At = { _id: Types.ObjectId('000000000000000000000002'), latitude: 3, longitude: 4, __v: 0 }
     it('find', async () => {
       const { seeds } = require('./at')
       const expected = seeds.map(format)
@@ -39,7 +38,7 @@ describe('api', async () => {
       expect(output).toEqual(expected)
     })
     it('create', async () => {
-      const expected = [version(format(create))]
+      const expected = [format(create)]
       const output = await request({
         json: true,
         url: `http://${process.env.HOST}:${process.env.FASTIFY}/api/at`,
@@ -49,7 +48,7 @@ describe('api', async () => {
       expect(output).toEqual(expected)
     })
     it('update', async () => {
-      const expected = version(format(update))
+      const expected = format(update)
       const output = await request({
         json: true,
         url: `http://${process.env.HOST}:${process.env.FASTIFY}/api/at/${update._id.toString()}`,
@@ -59,7 +58,7 @@ describe('api', async () => {
       expect(output).toEqual(expected)
     })
     it('delete', async () => {
-      const expected = version(format(update))
+      const expected = format(update)
       const output = await request({
         json: true,
         url: `http://${process.env.HOST}:${process.env.FASTIFY}/api/at/${update._id.toString()}`,
