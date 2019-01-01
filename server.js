@@ -1,9 +1,10 @@
 const fastify = require('fastify')({
   logger: true
 })
-const { routes } = require('./built/api/routes')
 
 const run = async () => {
+  const { routes: builder } = require('./built/api/routes')
+  const routes = builder(['at', 'company'])
   routes.forEach((route, index) => {
     fastify.route(route)
   })

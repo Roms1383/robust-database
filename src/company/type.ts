@@ -1,4 +1,4 @@
-import { Types, Schema } from "mongoose"
+import { Types } from "mongoose"
 export interface Company {
   _id: Types.ObjectId
   name: string
