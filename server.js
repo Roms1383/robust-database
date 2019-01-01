@@ -1,15 +1,2 @@
-const fastify = require('fastify')({
-  logger: true
-})
-
-const run = async () => {
-  const { routes: builder } = require('./built/api/routes')
-  const routes = await builder(['at', 'company'])
-  routes.forEach((route, index) => {
-    fastify.route(route)
-  })
-  
-  await fastify.listen(3000)
-  fastify.log.info(`listening on ${fastify.server.address().port}`)
-}
+const { run } = require('./built/api/server')
 run()

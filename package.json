@@ -21,7 +21,8 @@
     "mongo-seeding": "^3.0.0",
     "mongoose": "^5.3.13",
     "typescript": "^3.2.2",
-    "winston": "^3.1.0"
+    "winston": "^3.1.0",
+    "yn": "^3.0.0"
   },
   "devDependencies": {
     "@types/mongoose": "^5.3.1",
