@@ -1,27 +1,17 @@
 import * as boom from 'boom'
-import { Connection, Schema } from "mongoose";
-import { connect } from './connect'
+import { Model, Document } from "mongoose";
 
 export class Repository {
-  private connection : Connection
-  private name : string
-  private schema : Schema
-  constructor(name : string, schema : Schema) {
-    this.name = name
-    this.schema = schema
-  }
-  private async connect () {
-    if (!this.connection) this.connection = await connect()
-    return this.connection
+  private model : Model<Document>
+  constructor(model : Model<Document>) {
+    this.model = model
   }
   public find = async (req, reply) => {
     try {
       const { id = undefined } = req.params
-      const connection = await this.connect()
-      const model = connection.model(this.name, this.schema)
       return id
-      ? model.findById(id).lean(true)
-      : model.find({}).lean(true)
+      ? this.model.findById(id).lean(true)
+      : this.model.find({}).lean(true)
     } catch (e) {
       throw boom.boomify(e)
     }
@@ -29,9 +19,7 @@ export class Repository {
   public create = async (req, reply) => {
     try {
       const { body: document } = req
-      const connection = await this.connect()
-      const model = connection.model(this.name, this.schema)
-      return model.insertMany(document)
+      return this.model.insertMany(document)
     } catch (e) {
       throw boom.boomify(e)
     }
@@ -40,10 +28,8 @@ export class Repository {
     try {
       const { id } = req.params
       const { body: document } = req
-      const connection = await this.connect()
-      const model = connection.model(this.name, this.schema)
-      await model.findByIdAndUpdate(id, document)
-      return model.findById(id)
+      await this.model.findByIdAndUpdate(id, document)
+      return this.model.findById(id)
     } catch (e) {
       throw boom.boomify(e)
     }
@@ -51,9 +37,7 @@ export class Repository {
   public delete = async (req, reply) => {
     try {
       const { id } = req.params
-      const connection = await this.connect()
-      const model = connection.model(this.name, this.schema)
-      return model.findByIdAndDelete(id)
+      return this.model.findByIdAndDelete(id)
     } catch (e) {
       throw boom.boomify(e)
     }

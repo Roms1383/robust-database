@@ -1,9 +1,12 @@
 import { Repository } from './repository'
-export const routes = (collections : string[]) => {
+import { connect } from './connect';
+export const routes = async (collections : string[]) => {
   let api = []
   for (const collection of collections) {
     const { schema } = require(`../${collection}`)
-    const repository = new Repository(collection, schema)
+    const connection = await connect()
+    const model = connection.model(collection, schema)
+    const repository = new Repository(model)
     const routes = [
       {
         method: `GET`,
