@@ -2,7 +2,7 @@
 
 This repository was created as a proof of concept for good practices when creating a Rest API to manage an underlying Mongo database in a Node.js environment.
 
-## :sparkles: goals
+## goals
 *  _use strongly-typed data_
 *  _quickly generate database with existing customizable data sets_
 *  _assert Rest API and database operations_
@@ -43,6 +43,8 @@ Integration tests are defined in `index.test.ts` and run using [jest](https://gi
 
 At the time this documentation is written, only `at` collection is tested.
 
+---
+
 # project
 
 ## prerequisites
@@ -53,9 +55,11 @@ At the time this documentation is written, only `at` collection is tested.
 
 ## installation
 
+Clone this repository on your computer
 ```shell
 git clone https://github.com/Roms1383/robust-database.git
 ```
+Install the dependencies
 ```shell
 yarn install
 ```
@@ -100,3 +104,6 @@ SERVER_LOGGER=false
    *  execute `seed` command
    *  execute **jest** command
 
+---
+
+##### _Romain KELIFA - 2019 - MIT license_
