@@ -2393,7 +2393,7 @@ mongodb-core@3.1.9:
   optionalDependencies:
     saslprep "^1.0.0"
 
-mongodb@3.1.10, mongodb@^3.1.10, mongodb@^3.1.6:
+mongodb@3.1.10, mongodb@^3.1.6:
   version "3.1.10"
   resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-3.1.10.tgz#45ad9b74ea376f4122d0881b75e5489b9e504ed7"
   dependencies:
