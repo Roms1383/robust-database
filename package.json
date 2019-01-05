@@ -38,7 +38,8 @@
     "build": "yarn tsc",
     "seed": "yarn build && node ./seeding.js",
     "use": "yarn seed && node ./using.js",
-    "serve": "yarn seed && node ./server.js",
+    "server": "node ./server.js",
+    "serve": "yarn seed && yarn server",
     "test": "yarn seed -d && npx jest --detectOpenHandles --forceExit"
   }
 }
