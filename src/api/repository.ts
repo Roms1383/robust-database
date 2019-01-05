@@ -29,6 +29,9 @@ export class Repository {
     try {
       const { id } = req.params
       const { body: document } = req
+      const m = new this.model(document)
+      const error = m.validateSync()
+      if (error) throw error
       await this.model.findByIdAndUpdate(id, document)
       return this.model.findById(id).lean(true)
     } catch (e) {

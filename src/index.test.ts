@@ -18,11 +18,13 @@ describe('api', async () => {
     fastify.close()
   })
   describe('at', async () => {
+    const { seeds } = require('./at')
     const first =  Types.ObjectId('000000000000000000000001')
     const second = Types.ObjectId('000000000000000000000002')
+    const unknown = Types.ObjectId('000000000000000000000003')
     const create : At = { _id: second, latitude: 1, longitude: 2, __v: 0 }
     const update : At = { _id: second, latitude: 3, longitude: 4, __v: 0 }
-    const { seeds } = require('./at')
+    const malformed : any = { _id: second, weird: 'some unexpected property', __v: 0 }
     let output
     let expected
     it('find', async () => {
@@ -64,6 +66,16 @@ describe('api', async () => {
         })
         expect(output).toEqual(expected)
       })
+      it('cannot create malformed', async () => {
+        expect(
+          request({
+            json: true,
+            url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at`,
+            body: malformed,
+            method: 'POST'
+          })
+        ).rejects.toThrowError()
+      })
     })
     describe('update', async () => {
       it('can update', async () => {
@@ -85,6 +97,25 @@ describe('api', async () => {
         })
         expect(output).toEqual(expected)
       })
+      it('cannot update malformed', async () => {
+        expect(
+          request({
+            json: true,
+            url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at/${second}`,
+            body: malformed,
+            method: 'PUT'
+          })
+        ).rejects.toThrowError()
+      })
+      it('cannot update unknown', async () => {
+        output = await request({
+          json: true,
+          url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at/${unknown}`,
+          body: update,
+          method: 'PUT'
+        })
+        expect(output).toEqual(null)
+      })
     })
     describe('delete', async () => {
       it('can delete', async () => {
@@ -101,6 +132,14 @@ describe('api', async () => {
           json: true,
           url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at/${second}`,
           method: 'GET'
+        })
+        expect(output).toEqual(null)
+      })
+      it('cannot delete unknown', async () => {
+        output = await request({
+          json: true,
+          url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at/${unknown}`,
+          method: 'DELETE'
         })
         expect(output).toEqual(null)
       })
