@@ -91,7 +91,7 @@ SERVER_LOGGER=false
 *  `seed` : seed the Mongo DB from the `seeds.ts` located in the collections folders
    *  execute `build` command
    *  execute **seeding.js** file
-   option : `-d` / `--drop` will automatically drop any former existing database without asking confirmation first
+   > option : `-d` / `--drop` will automatically drop any former existing database without asking confirmation first
 *  `use` : execute a set of database commands as an example
    *  execute `seed` command
    *  execute **using.js** file
