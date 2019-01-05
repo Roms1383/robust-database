@@ -18,57 +18,92 @@ describe('api', async () => {
     fastify.close()
   })
   describe('at', async () => {
-    const create : At = { _id: Types.ObjectId('000000000000000000000002'), latitude: 1, longitude: 2, __v: 0 }
-    const update : At = { _id: Types.ObjectId('000000000000000000000002'), latitude: 3, longitude: 4, __v: 0 }
+    const first =  Types.ObjectId('000000000000000000000001')
+    const second = Types.ObjectId('000000000000000000000002')
+    const create : At = { _id: second, latitude: 1, longitude: 2, __v: 0 }
+    const update : At = { _id: second, latitude: 3, longitude: 4, __v: 0 }
+    const { seeds } = require('./at')
+    let output
+    let expected
     it('find', async () => {
-      const { seeds } = require('./at')
-      const expected = seeds.map(format)
-      const output = await request({
+      expected = seeds.map(format)
+      output = await request({
         json: true,
         url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at`,
         method: 'GET'
       })
+      expect(output.length).toEqual(seeds.length)
       expect(output).toEqual(expected)
     })
     it('find by ID', async () => {
-      const id = '000000000000000000000001'
-      const { seeds } = require('./at')
-      const expected = seeds.map(format).find(({ _id }) => _id === id)
-      const output = await request({
+      expected = format(seeds.find(({ _id }) => _id.toString() === first.toString()))
+      output = await request({
         json: true,
-        url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at/${id}`,
+        url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at/${first}`,
         method: 'GET'
       })
       expect(output).toEqual(expected)
     })
-    it('create', async () => {
-      const expected = [format(create)]
-      const output = await request({
-        json: true,
-        url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at`,
-        body: create,
-        method: 'POST'
+    describe('create', async () => {
+      it('can create', async () => {
+        expected = [format(create)]
+        output = await request({
+          json: true,
+          url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at`,
+          body: create,
+          method: 'POST'
+        })
+        expect(output).toEqual(expected)
       })
-      expect(output).toEqual(expected)
+      it('created correctly', async () => {
+        expected = format(create)
+        output = await request({
+          json: true,
+          url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at/${second}`,
+          method: 'GET'
+        })
+        expect(output).toEqual(expected)
+      })
     })
-    it('update', async () => {
-      const expected = format(update)
-      const output = await request({
-        json: true,
-        url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at/${update._id.toString()}`,
-        body: update,
-        method: 'PUT'
+    describe('update', async () => {
+      it('can update', async () => {
+        expected = format(update)
+        output = await request({
+          json: true,
+          url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at/${second}`,
+          body: update,
+          method: 'PUT'
+        })
+        expect(output).toEqual(expected)
       })
-      expect(output).toEqual(expected)
+      it('updated correctly', async () => {
+        expected = format(update)
+        output = await request({
+          json: true,
+          url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at/${second}`,
+          method: 'GET'
+        })
+        expect(output).toEqual(expected)
+      })
     })
-    it('delete', async () => {
-      const expected = format(update)
-      const output = await request({
-        json: true,
-        url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at/${update._id.toString()}`,
-        method: 'DELETE'
+    describe('delete', async () => {
+      it('can delete', async () => {
+        expected = format(update)
+        output = await request({
+          json: true,
+          url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at/${second}`,
+          method: 'DELETE'
+        })
+        expect(output).toEqual(expected)
       })
-      expect(output).toEqual(expected)
+      it('deleted correctly', async () => {
+        output = await request({
+          json: true,
+          url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at/${second}`,
+          method: 'GET'
+        })
+        expect(output).toEqual(null)
+      })
     })
   })
 })
