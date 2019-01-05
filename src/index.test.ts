@@ -1,9 +1,9 @@
-import { run } from './api/server'
 import * as request from 'request-promise-native'
 import { ObjectID } from 'mongodb'
 import { Types } from 'mongoose'
-import { At } from './at/type'
 import { environment } from './api/environment'
+import { run } from './api/server'
+import { At } from './db/at/type'
 const { SERVER_HOST, SERVER_PORT } = environment
 const format = document => Object.keys(document).reduce((object, key) => document[key] instanceof ObjectID
 ? { ...object, [key]: document[key].toString() }
@@ -18,7 +18,7 @@ describe('api', async () => {
     fastify.close()
   })
   describe('at', async () => {
-    const { seeds } = require('./at')
+    const { seeds } = require('./db/at')
     const last = +(seeds[ seeds.length - 1]._id.toString())
     const pad = s => {
       const size = 24 // length of chars of an ObjectId
