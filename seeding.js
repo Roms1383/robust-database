@@ -1,5 +1,7 @@
 const { environment } = require('./built/api/environment')
 const { DATABASE_HOST, DATABASE_PORT, DATABASE_NAME } = environment
+const fs = require('fs')
+const path = require('path')
 const chalk = require('chalk')
 const inquirer = require('inquirer')
 const program = require('commander')
@@ -15,10 +17,15 @@ const config = {
 }
 const message = `will ${chalk.red('DROP')} then seed database ${chalk.red(config.database.name)} at ${chalk.green(config.database.host)}:${chalk.green(config.database.port)}`
 const seeder = new Seeder(config)
-const collections = [
-  { name: 'at', documents: require('./built/at').seeds },
-  { name: 'company', documents: require('./built/company').seeds },
-]
+// location of the collections folders
+const location = [ __dirname, 'built', 'db' ]
+// will automatically load all the seeds from the collections folders
+const collections = fs
+.readdirSync(path.resolve(...location))
+.filter(file => fs.statSync(path.resolve(...location.concat(file))))
+.map(folder => ({
+  name: folder, documents: require(`./built/db/${folder}`).seeds
+}))
 const seed = async () => {
   try {
     logger.info('seeding database...')

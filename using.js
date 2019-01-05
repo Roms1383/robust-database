@@ -1,10 +1,9 @@
 const { connect, uri } = require('./built/api/connect')
-const mongoose = require('mongoose')
 const chalk = require('chalk')
 const logger = require('./logger')
 const schema = {
-  at: require('./built/at').schema,
-  company: require('./built/company').schema,
+  at: require('./built/db/at').schema,
+  company: require('./built/db/company').schema,
 }
 const run = async () => {
   logger.info(`connect to ${uri}...`)

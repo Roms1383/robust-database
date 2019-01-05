@@ -3,7 +3,7 @@ import { connect } from './connect';
 export const routes = async (collections : string[]) => {
   let api = []
   for (const collection of collections) {
-    const { schema } = require(`../${collection}`)
+    const { schema } = require(`../db/${collection}`)
     const connection = await connect()
     const model = connection.model(collection, schema)
     const repository = new Repository(model)
