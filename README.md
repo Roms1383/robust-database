@@ -104,6 +104,16 @@ SERVER_LOGGER=false
    *  execute `seed` command
    *  execute **jest** command
 
+## Postman
+
+You can also :
+1.  seed database and run the server :
+    ```shell
+    yarn serve
+    ```
+2.  import `postman.json` into [Postman](https://www.getpostman.com)
+3.  quickly test the endpoints yourself
+
 ---
 
 ##### _Romain KELIFA - 2019 - MIT license_
