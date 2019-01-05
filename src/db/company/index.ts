@@ -4,11 +4,7 @@ import { definition } from "./definition"
 export { seeds } from "./seeds"
 
 const create = () => {
-  const schema : Schema = new Schema(definition,
-    {
-      collection: 'company',
-      toObject: { virtuals: true }
-    })
+  const schema : Schema = new Schema(definition, { collection: 'company' })
   schema.virtual('at', {
     ref: 'at',
     localField: 'at_id',
