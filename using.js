@@ -1,4 +1,4 @@
-require('dotenv').config()
+const { connect, uri } = require('./built/api/connect')
 const mongoose = require('mongoose')
 const chalk = require('chalk')
 const logger = require('./logger')
@@ -6,8 +6,6 @@ const schema = {
   at: require('./built/at').schema,
   company: require('./built/company').schema,
 }
-const uri = `mongodb://${process.env.HOST}:${process.env.PORT}/${process.env.NAME}`
-const connect = async () => mongoose.createConnection(uri, { useNewUrlParser: true })
 const run = async () => {
   logger.info(`connect to ${uri}...`)
   const connection = await connect()
@@ -19,7 +17,7 @@ const run = async () => {
   const companies = {}
   companies.without = await COMPANY.find({})
   logger.info(`${chalk.bold('mere')} documents in ${chalk.blue('company')}:\n${JSON.stringify(companies.without, null, 2)}`)
-  companies.with = await COMPANY.find({}).populate('at').lean(true)
+  companies.with = await COMPANY.find({}).populate('at')
   logger.info(`${chalk.bold('populated')} documents in ${chalk.blue('company')}:\n${JSON.stringify(companies.with, null, 2)}`)
   process.exit(0)
 }
