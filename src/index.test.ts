@@ -19,12 +19,19 @@ describe('api', async () => {
   })
   describe('at', async () => {
     const { seeds } = require('./at')
+    const last = +(seeds[ seeds.length - 1]._id.toString())
+    const pad = s => {
+      const size = 24 // length of chars of an ObjectId
+      s = `${s}`
+      while (s.length < (size || 2)) {s = "0" + s}
+      return s
+    }
     const first =  Types.ObjectId('000000000000000000000001')
-    const second = Types.ObjectId('000000000000000000000002')
-    const unknown = Types.ObjectId('000000000000000000000003')
-    const create : At = { _id: second, latitude: 1, longitude: 2, __v: 0 }
-    const update : At = { _id: second, latitude: 3, longitude: 4, __v: 0 }
-    const malformed : any = { _id: second, weird: 'some unexpected property', __v: 0 }
+    const next = Types.ObjectId(pad(last+1))
+    const unknown = Types.ObjectId(pad(last+2))
+    const create : At = { _id: next, latitude: 1, longitude: 2, __v: 0 }
+    const update : At = { _id: next, latitude: 3, longitude: 4, __v: 0 }
+    const malformed : any = { _id: next, weird: 'some unexpected property', __v: 0 }
     let output
     let expected
     it('find', async () => {
@@ -61,7 +68,7 @@ describe('api', async () => {
         expected = format(create)
         output = await request({
           json: true,
-          url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at/${second}`,
+          url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at/${next}`,
           method: 'GET'
         })
         expect(output).toEqual(expected)
@@ -82,7 +89,7 @@ describe('api', async () => {
         expected = format(update)
         output = await request({
           json: true,
-          url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at/${second}`,
+          url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at/${next}`,
           body: update,
           method: 'PUT'
         })
@@ -92,7 +99,7 @@ describe('api', async () => {
         expected = format(update)
         output = await request({
           json: true,
-          url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at/${second}`,
+          url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at/${next}`,
           method: 'GET'
         })
         expect(output).toEqual(expected)
@@ -101,7 +108,7 @@ describe('api', async () => {
         expect(
           request({
             json: true,
-            url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at/${second}`,
+            url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at/${next}`,
             body: malformed,
             method: 'PUT'
           })
@@ -122,7 +129,7 @@ describe('api', async () => {
         expected = format(update)
         output = await request({
           json: true,
-          url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at/${second}`,
+          url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at/${next}`,
           method: 'DELETE'
         })
         expect(output).toEqual(expected)
@@ -130,7 +137,7 @@ describe('api', async () => {
       it('deleted correctly', async () => {
         output = await request({
           json: true,
-          url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at/${second}`,
+          url: `http://${SERVER_HOST}:${SERVER_PORT}/api/at/${next}`,
           method: 'GET'
         })
         expect(output).toEqual(null)
