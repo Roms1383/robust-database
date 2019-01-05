@@ -1,0 +1,84 @@
+{
+	"variables": [],
+	"info": {
+		"name": "robust-database",
+		"_postman_id": "cdda3978-c8ee-912d-36b0-4005136e3b1d",
+		"description": "Used for the tutorial robust-database",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET /api/at",
+			"request": {
+				"url": "http://127.0.0.1:3000/api/at",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET /api/at/:id",
+			"request": {
+				"url": "http://127.0.0.1:3000/api/at/000000000000000000000001",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST /api/at",
+			"request": {
+				"url": "http://127.0.0.1:3000/api/at",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"_id\": \"000000000000000000000002\", \"latitude\":1,\"longitude\":2}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "PUT /api/at/:id",
+			"request": {
+				"url": "http://127.0.0.1:3000/api/at/000000000000000000000002",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"latitude\":3,\"longitude\":4}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE /api/at/:id",
+			"request": {
+				"url": "http://127.0.0.1:3000/api/at/000000000000000000000002",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
