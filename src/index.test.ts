@@ -14,8 +14,8 @@ describe('api', async () => {
   beforeAll(async () => {
     fastify = await run()
   })
-  afterAll(() => {
-    fastify.close()
+  afterAll(async () => {
+    await fastify.close()
   })
   describe('at', async () => {
     const { seeds } = require('./db/at')

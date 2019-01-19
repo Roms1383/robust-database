@@ -22,7 +22,7 @@ const location = [ __dirname, 'built', 'db' ]
 // will automatically load all the seeds from the collections folders
 const collections = fs
 .readdirSync(path.resolve(...location))
-.filter(file => fs.statSync(path.resolve(...location.concat(file))))
+.filter(file => fs.lstatSync(path.resolve(...location.concat(file))).isDirectory())
 .map(folder => ({
   name: folder, documents: require(`./built/db/${folder}`).seeds
 }))
