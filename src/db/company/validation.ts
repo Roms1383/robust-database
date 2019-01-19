@@ -1,8 +1,17 @@
 import * as Joi from 'joi'
-export const validation = Joi
+import { _id, __v } from '../validation'
+export const body = Joi
 .object()
 .keys({
-  _id: Joi.string().required(),
-  name: Joi.string().not('').required(),
-  __v: Joi.number().integer(),
+  _id,
+  __v,
+  name: Joi
+  .string()
+  .not('')
+  .required(),
+})
+export const params = Joi
+.object()
+.keys({
+  id: _id,
 })

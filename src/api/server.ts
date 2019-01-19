@@ -14,7 +14,7 @@ export const run = async () => {
     fastify.route(route)
   })
   fastify.setErrorHandler(async (error : Error, request : any, reply : any) => {
-    if (error) {
+    if (request.validationError) {
       const message = request.validationError.details.map(({ message }) => message).join(', ')
       reply.status(422).send(new Error(message))
     }

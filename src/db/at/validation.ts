@@ -1,9 +1,21 @@
 import * as Joi from 'joi'
-export const validation = Joi
+import { _id, __v } from '../validation'
+export const body = Joi
 .object()
 .keys({
-  _id: Joi.string().required(),
-  latitude: Joi.number().greater(0).required(),
-  longitude: Joi.number().greater(0).required(),
-  __v: Joi.number().integer(),
+  _id,
+  __v,
+  latitude: Joi
+  .number()
+  .greater(0)
+  .required(),
+  longitude: Joi
+  .number()
+  .greater(0)
+  .required(),
+})
+export const params = Joi
+.object()
+.keys({
+  id: _id,
 })

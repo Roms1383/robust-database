@@ -14,4 +14,4 @@ const create = () => {
   return schema
 }
 export const schema : Schema = create()
-export { validation } from './validation'
+export { body, params } from './validation'
