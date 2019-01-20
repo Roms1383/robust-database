@@ -1,18 +1,12 @@
-import * as Joi from 'joi'
-import { _id, __v } from '../validation'
-export const body = Joi
-.object()
-.keys({
-  _id,
-  __v,
-  name: Joi
-  .string()
-  .not('')
-  .required()
-  .description('name of the company'),
-})
-export const params = Joi
-.object()
-.keys({
-  id: _id,
-})
+import { _id, __v, params as Params } from '../validation'
+export const body = {
+  type: 'object',
+  properties: {
+    _id,
+    __v,
+    name: { type: 'string', minLength: 1, description: 'name of the company' },
+  },
+  required: ['_id', 'name'],
+  additionalProperties: false
+}
+export const params = Params

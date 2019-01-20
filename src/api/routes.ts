@@ -1,8 +1,6 @@
-import * as Joi from 'joi'
 import { Repository } from './repository'
 import { connect } from './connect';
 const plur = require('plur')
-const schemaCompiler = schema => data => Joi.validate(data, schema)
 export const routes = async (collections : string[]) => {
   let api = []
   for (const collection of collections) {
@@ -21,33 +19,25 @@ export const routes = async (collections : string[]) => {
         method: `GET`,
         url: `/api/${collection}/:id`,
         schema: { params, description: `retrieve a specific ${collection} by its id` },
-        schemaCompiler,
-        handler: repository.find,
-        attachValidation: true
+        handler: repository.find
       },
       {
         method: `POST`,
         url: `/api/${collection}`,
         schema: { body, description: `create a new ${collection}` },
-        schemaCompiler,
-        handler: repository.create,
-        attachValidation: true
+        handler: repository.create
       },
       {
         method: `PUT`,
         url: `/api/${collection}/:id`,
         schema: { body, params, description: `update a specific ${collection} by its id` },
-        schemaCompiler,
-        handler: repository.update,
-        attachValidation: true
+        handler: repository.update
       },
       {
         method: `DELETE`,
         url: `/api/${collection}/:id`,
         schema: { params, description: `delete a specific document ${collection} by its id` },
-        schemaCompiler,
-        handler: repository.delete,
-        attachValidation: true
+        handler: repository.delete
       }
     ]
     api = [...api, ...routes]

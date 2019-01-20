@@ -10,13 +10,14 @@
     "url": "https://github.com/Roms1383/robust-database.git"
   },
   "dependencies": {
+    "ajv": "^6.7.0",
+    "ajv-errors": "^1.0.1",
     "boom": "^7.3.0",
     "dotenv": "^6.2.0",
     "enjoi": "^5.0.1",
     "fastify": "^1.13.3",
+    "fastify-cors": "^1.0.0",
     "fastify-swagger": "^1.0.0",
-    "joi": "^14.3.1",
-    "joi-to-json-schema": "^3.5.0",
     "mongoose": "^5.3.13",
     "plur": "^3.0.1",
     "winston": "^3.1.0",
@@ -25,7 +26,6 @@
   "devDependencies": {
     "@types/boom": "^7.2.1",
     "@types/jest": "^23.3.11",
-    "@types/joi": "^14.0.1",
     "@types/mongoose": "^5.3.1",
     "@types/request-promise-native": "^1.0.15",
     "@types/yn": "types/npm-yn",
