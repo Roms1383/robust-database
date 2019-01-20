@@ -8,11 +8,13 @@ export const body = Joi
   latitude: Joi
   .number()
   .greater(0)
-  .required(),
+  .required()
+  .description('latitude of the location'),
   longitude: Joi
   .number()
   .greater(0)
-  .required(),
+  .required()
+  .description('longitude of the location'),
 })
 export const params = Joi
 .object()
