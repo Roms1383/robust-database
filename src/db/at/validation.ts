@@ -7,7 +7,7 @@ export const body = {
     latitude: { type: 'number', minimum: 0, description: 'latitude of the location' },
     longitude: { type: 'number', minimum: 0, description: 'longitude of the location' },
   },
-  required: ['_id', 'latitude', 'longitude'],
+  required: ['latitude', 'longitude'],
   additionalProperties: false
 }
 export const params = Params
