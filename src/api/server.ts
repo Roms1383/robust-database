@@ -12,11 +12,9 @@ const fastify: Fastify.FastifyInstance<Server, IncomingMessage, ServerResponse> 
   logger: SERVER_LOGGER
 })
 const swagger : any = require('fastify-swagger')
-const cors : any = require('fastify-cors')
 
 export const run = async () => {
   fastify.register(swagger, options)
-  fastify.register(cors, { origin: '*' })
   const { routes: builder } = require('./routes')
   const routes = await builder(['at', 'company'])
   routes.forEach((route, index) => {

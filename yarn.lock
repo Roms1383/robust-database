@@ -1135,14 +1135,6 @@ fast-safe-stringify@^2.0.4:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/fast-safe-stringify/-/fast-safe-stringify-2.0.6.tgz#04b26106cc56681f51a044cfc0d76cf0008ac2c2"
 
-fastify-cors@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/fastify-cors/-/fastify-cors-1.0.0.tgz#a2864274ee9d7699f47f9ad8a5b4a736effc7b16"
-  integrity sha512-ebFNKu036EqEPLe071sT+f2umL5rM1GfUNj6G69JMnL7gZs8qKOMr2wKDrMTtuTpGydgsdnTVjP6qSGQWfC6dQ==
-  dependencies:
-    fastify-plugin "^1.2.0"
-    vary "^1.1.2"
-
 fastify-plugin@^1.2.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/fastify-plugin/-/fastify-plugin-1.4.0.tgz#9f63ffc304a2f34e890773e78d2ba6908536e5b2"
@@ -3796,11 +3788,6 @@ validate-npm-package-license@^3.0.1:
   dependencies:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
-
-vary@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
-  integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
 
 verror@1.10.0:
   version "1.10.0"
