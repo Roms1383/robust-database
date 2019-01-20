@@ -4,9 +4,10 @@ export const body = {
   properties: {
     _id,
     __v,
+    at_id: _id,
     name: { type: 'string', minLength: 1, description: 'name of the company' },
   },
-  required: ['_id', 'name'],
+  required: ['at_id', 'name'],
   additionalProperties: false
 }
 export const params = Params

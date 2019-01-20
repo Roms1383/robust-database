@@ -1,7 +1,7 @@
 import { Schema } from "mongoose"
 import { definition } from "./definition"
 
-export { seeds } from "./seeds"
+export { seeds, unit } from "./seeds"
 
 const create = () => {
   const schema : Schema = new Schema(definition, { collection: 'company' })

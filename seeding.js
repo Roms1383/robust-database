@@ -17,19 +17,11 @@ const config = {
 }
 const message = `will ${chalk.red('DROP')} then seed database ${chalk.red(config.database.name)} at ${chalk.green(config.database.host)}:${chalk.green(config.database.port)}`
 const seeder = new Seeder(config)
-// location of the collections folders
-const location = [ __dirname, 'built', 'db' ]
-// will automatically load all the seeds from the collections folders
-const collections = fs
-.readdirSync(path.resolve(...location))
-.filter(file => fs.lstatSync(path.resolve(...location.concat(file))).isDirectory())
-.map(folder => ({
-  name: folder, documents: require(`./built/db/${folder}`).seeds
-}))
+const { seeds } = require('./built/loader')
 const seed = async () => {
   try {
     logger.info('seeding database...')
-    await seeder.import(collections)
+    await seeder.import(seeds)
     logger.info('seeded database successfully !')
   } catch (e) { logger.error(`error while seeding database :\n${e.toString()}`) }
 }
