@@ -36,7 +36,7 @@ export const routes = async (collections : string[]) => {
       {
         method: `DELETE`,
         url: `/api/${collection}/:id`,
-        schema: { params, description: `delete a specific document ${collection} by its id` },
+        schema: { params, description: `delete a specific ${collection} by its id` },
         handler: repository.delete
       }
     ]
