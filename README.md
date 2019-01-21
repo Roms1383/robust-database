@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/Roms1383/robust-database.svg?branch=documentation)](https://travis-ci.org/Roms1383/robust-database)
+[![codecov](https://codecov.io/gh/Roms1383/robust-database/branch/documentation/graphs/badge.svg)](https://codecov.io/gh/Roms1383/robust-database)
 
 # purpose
 
