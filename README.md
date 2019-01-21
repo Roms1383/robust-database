@@ -35,7 +35,7 @@ Each collection will automatically have the following routes :
 | `GET`     | `/api/collection`     | find all the documents                  | _none_                                           |
 | `GET`     | `/api/collection/:id` | find a specific document by its `id`    | validate `id` in path                            |
 | `POST`    | `/api/collection`     | create a new document                   | validate document in body                        |
-| `PUT`     | `/api/collection/:id` | update a specific document by its `id`  | validate body `id` in path and document in body  |
+| `PUT`     | `/api/collection/:id` | update a specific document by its `id`  | validate both `id` in path and document in body  |
 | `DELETE`  | `/api/collection/:id` | delete a specific document by its `id`  | validate `id` in path                            |
 
 As a side note, the API always return plain objects (no fancy mongoose Documents).
@@ -44,7 +44,13 @@ As a side note, the API always return plain objects (no fancy mongoose Documents
 
 Integration tests are defined in `index.test.ts` and run using [jest](https://github.com/facebook/jest).
 
-At the time this documentation is written, only `at` collection is tested.
+All collection folders are automatically tested using the seeds.
+
+### :construction_worker: continuous integration
+
+Tests are also run after each push on [Travis CI](https://travis-ci.org/Roms1383/robust-database).
+
+Code coverage is updated on [Codecov](https://codecov.io/gh/Roms1383/robust-database) after each successful CI build.
 
 ### :clipboard: documentation
 
