@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Roms1383/robust-database.svg?branch=documentation)](https://travis-ci.org/Roms1383/robust-database)
+
 # purpose
 
 This repository was created as a proof of concept for good practices when creating a Rest API to manage an underlying Mongo database in a Node.js environment.
