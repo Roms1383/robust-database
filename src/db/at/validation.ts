@@ -1,4 +1,4 @@
-import { _id, __v, params as Params } from '../validation'
+import { __v, _id, params as Params } from '../validation'
 export const body = {
   type: 'object',
   properties: {
@@ -8,6 +8,6 @@ export const body = {
     longitude: { type: 'number', minimum: 0, description: 'longitude of the location' },
   },
   required: ['latitude', 'longitude'],
-  additionalProperties: false
+  additionalProperties: false,
 }
 export const params = Params

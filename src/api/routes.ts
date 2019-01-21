@@ -1,5 +1,5 @@
+import { connect } from './connect'
 import { Repository } from './repository'
-import { connect } from './connect';
 const plur = require('plur')
 export const routes = async (collections : string[]) => {
   let api = []
@@ -13,32 +13,32 @@ export const routes = async (collections : string[]) => {
         method: `GET`,
         url: `/api/${collection}`,
         handler: repository.find,
-        schema: { description: `retrieve all ${plur(collection, 2)}` }
+        schema: { description: `retrieve all ${plur(collection, 2)}` },
       },
       {
         method: `GET`,
         url: `/api/${collection}/:id`,
         schema: { params, description: `retrieve a specific ${collection} by its id` },
-        handler: repository.find
+        handler: repository.find,
       },
       {
         method: `POST`,
         url: `/api/${collection}`,
         schema: { body, description: `create a new ${collection}` },
-        handler: repository.create
+        handler: repository.create,
       },
       {
         method: `PUT`,
         url: `/api/${collection}/:id`,
         schema: { body, params, description: `update a specific ${collection} by its id` },
-        handler: repository.update
+        handler: repository.update,
       },
       {
         method: `DELETE`,
         url: `/api/${collection}/:id`,
         schema: { params, description: `delete a specific ${collection} by its id` },
-        handler: repository.delete
-      }
+        handler: repository.delete,
+      },
     ]
     api = [...api, ...routes]
   }

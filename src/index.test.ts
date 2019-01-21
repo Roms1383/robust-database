@@ -1,7 +1,7 @@
-import * as request from 'request-promise-native'
 import chalk from 'chalk'
 import { ObjectID } from 'mongodb'
 import { Types } from 'mongoose'
+import * as request from 'request-promise-native'
 import { environment } from './api/environment'
 import { run } from './api/server'
 import { collections } from './loader'
@@ -25,12 +25,12 @@ describe('api', async () => {
       const pad = s => {
         const size = 24 // length of chars of an ObjectId
         s = `${s}`
-        while (s.length < (size || 2)) {s = "0" + s}
+        while (s.length < (size || 2)) {s = '0' + s }
         return s
       }
       const first =  Types.ObjectId('000000000000000000000001')
-      const next = Types.ObjectId(pad(last+1))
-      const unknown = Types.ObjectId(pad(last+2))
+      const next = Types.ObjectId(pad(last + 1))
+      const unknown = Types.ObjectId(pad(last + 2))
       const { create, update, malformed } = unit(next)
       let output
       let expected
@@ -40,7 +40,7 @@ describe('api', async () => {
           output = await request({
             json: true,
             url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}`,
-            method: 'GET'
+            method: 'GET',
           })
           expect(output.length).toEqual(seeds.length)
           expect(output).toEqual(expected)
@@ -50,7 +50,7 @@ describe('api', async () => {
           output = await request({
             json: true,
             url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/${first}`,
-            method: 'GET'
+            method: 'GET',
           })
           expect(output).toEqual(expected)
         })
@@ -62,7 +62,7 @@ describe('api', async () => {
             json: true,
             url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}`,
             body: create,
-            method: 'POST'
+            method: 'POST',
           })
           expect(output).toEqual(expected)
         })
@@ -71,7 +71,7 @@ describe('api', async () => {
           output = await request({
             json: true,
             url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/${next}`,
-            method: 'GET'
+            method: 'GET',
           })
           expect(output).toEqual(expected)
         })
@@ -81,8 +81,8 @@ describe('api', async () => {
               json: true,
               url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}`,
               body: malformed,
-              method: 'POST'
-            })
+              method: 'POST',
+            }),
           ).rejects.toThrowError()
         })
       })
@@ -93,7 +93,7 @@ describe('api', async () => {
             json: true,
             url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/${next}`,
             body: update,
-            method: 'PUT'
+            method: 'PUT',
           })
           expect(output).toEqual(expected)
         })
@@ -102,7 +102,7 @@ describe('api', async () => {
           output = await request({
             json: true,
             url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/${next}`,
-            method: 'GET'
+            method: 'GET',
           })
           expect(output).toEqual(expected)
         })
@@ -112,8 +112,8 @@ describe('api', async () => {
               json: true,
               url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/${next}`,
               body: malformed,
-              method: 'PUT'
-            })
+              method: 'PUT',
+            }),
           ).rejects.toThrowError()
         })
         it('cannot update unknown', async () => {
@@ -121,7 +121,7 @@ describe('api', async () => {
             json: true,
             url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/${unknown}`,
             body: update,
-            method: 'PUT'
+            method: 'PUT',
           })
           expect(output).toEqual(null)
         })
@@ -132,7 +132,7 @@ describe('api', async () => {
           output = await request({
             json: true,
             url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/${next}`,
-            method: 'DELETE'
+            method: 'DELETE',
           })
           expect(output).toEqual(expected)
         })
@@ -140,7 +140,7 @@ describe('api', async () => {
           output = await request({
             json: true,
             url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/${next}`,
-            method: 'GET'
+            method: 'GET',
           })
           expect(output).toEqual(null)
         })
@@ -148,7 +148,7 @@ describe('api', async () => {
           output = await request({
             json: true,
             url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/${unknown}`,
-            method: 'DELETE'
+            method: 'DELETE',
           })
           expect(output).toEqual(null)
         })

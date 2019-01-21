@@ -1,5 +1,5 @@
 import * as boom from 'boom'
-import { Model, Document } from "mongoose";
+import { Document, Model } from 'mongoose'
 
 export class Repository {
   private model : Model<Document>
@@ -8,7 +8,7 @@ export class Repository {
   }
   public find = async (req, reply) : Promise<Object[]|null|Error> => {
     try {
-      const { id = undefined } = req.params
+      const { id } = req.params
       return id
       ? this.model.findById(id).lean(true)
       : this.model.find({}).lean(true)
@@ -31,7 +31,7 @@ export class Repository {
       const { body: document } = req
       const m = new this.model(document)
       const error = m.validateSync()
-      if (error) throw error
+      if (error) { throw error }
       await this.model.findByIdAndUpdate(id, document)
       return this.model.findById(id).lean(true)
     } catch (e) {

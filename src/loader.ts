@@ -7,5 +7,5 @@ export const collections = fs
 .readdirSync(path.resolve(...location))
 .filter(file => fs.lstatSync(path.resolve(...location.concat(file))).isDirectory())
 export const seeds = collections.map(folder => ({
-  name: folder, documents: require(path.resolve(...location, folder)).seeds
+  name: folder, documents: require(path.resolve(...location, folder)).seeds,
 }))

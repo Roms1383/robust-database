@@ -1,4 +1,4 @@
-import { _id, __v, params as Params } from '../validation'
+import { __v, _id, params as Params } from '../validation'
 export const body = {
   type: 'object',
   properties: {
@@ -8,6 +8,6 @@ export const body = {
     name: { type: 'string', minLength: 1, description: 'name of the company' },
   },
   required: ['at_id', 'name'],
-  additionalProperties: false
+  additionalProperties: false,
 }
 export const params = Params

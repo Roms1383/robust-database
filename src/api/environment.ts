@@ -6,5 +6,5 @@ export const environment = {
   DATABASE_NAME: process.env.DATABASE_NAME || 'testing',
   SERVER_HOST: process.env.SERVER_HOST || 'localhost',
   SERVER_PORT: +process.env.SERVER_PORT || 3000,
-  SERVER_LOGGER: yn(process.env.SERVER_LOGGER) || false
+  SERVER_LOGGER: yn(process.env.SERVER_LOGGER) || false,
 }

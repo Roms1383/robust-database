@@ -1,7 +1,7 @@
-import { Types } from "mongoose"
+import { Types } from 'mongoose'
 export interface At {
-  _id: Types.ObjectId
-  latitude: number
-  longitude: number
-  __v: number
+  _id : Types.ObjectId
+  latitude : number
+  longitude : number
+  __v : number
 }

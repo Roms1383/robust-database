@@ -1,7 +1,7 @@
-import { Schema } from "mongoose"
-import { definition } from "./definition"
+import { Schema } from 'mongoose'
+import { definition } from './definition'
 
-export { seeds, unit } from "./seeds"
+export { seeds, unit } from './seeds'
 
 const create = () => {
   const schema : Schema = new Schema(definition, { collection: 'company' })
@@ -9,7 +9,7 @@ const create = () => {
     ref: 'at',
     localField: 'at_id',
     foreignField: '_id',
-    justOne: true
+    justOne: true,
   })
   return schema
 }
