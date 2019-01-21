@@ -13,4 +13,4 @@ before_install:
 before_script:
   - yarn global add codecov
 after_success:
-  - yarn codecov
+  - codecov
