@@ -52,5 +52,9 @@
     "server": "node ./server.js",
     "serve": "yarn seed && yarn server",
     "test": "yarn seed -d && npx jest --detectOpenHandles --forceExit"
+  },
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
   }
 }
