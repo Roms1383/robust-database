@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/Roms1383/robust-database.svg?branch=documentation)](https://travis-ci.org/Roms1383/robust-database)
+[![codecov](https://codecov.io/gh/Roms1383/robust-database/branch/documentation/graphs/badge.svg)](https://codecov.io/gh/Roms1383/robust-database)
+
 # purpose
 
 This repository was created as a proof of concept for good practices when creating a Rest API to manage an underlying Mongo database in a Node.js environment.
@@ -43,6 +46,12 @@ Integration tests are defined in `index.test.ts` and run using [jest](https://gi
 
 At the time this documentation is written, only `at` collection is tested.
 
+### :clipboard: documentation
+
+API documentation is automatically generated with [fastify-swagger](https://github.com/fastify/fastify-swagger).
+
+It can be found once server is started at http://localhost:3000/documentation.
+
 ---
 
 # project
@@ -76,10 +85,10 @@ You can add a `.env` file at the root of the project, in order to configure :
 
 If not provided, the project will automatically be setup with the following defaults :
 ```env
-DATABASE_HOST="127.0.0.1"
+DATABASE_HOST="localhost"
 DATABASE_PORT=27017
 DATABASE_NAME="testing"
-SERVER_HOST="127.0.0.1"
+SERVER_HOST="localhost"
 SERVER_PORT=3000
 SERVER_LOGGER=false
 ```

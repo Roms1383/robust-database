@@ -1,6 +1,8 @@
 import * as Joi from 'joi'
+import { connect } from './connect'
 import { Repository } from './repository'
-import { connect } from './connect';
+const schemaCompiler = schema => data => Joi.validate(data, schema)
+const plur = require('plur')
 export const routes = async (collections : string[]) => {
   let api = []
   for (const collection of collections) {
@@ -12,40 +14,41 @@ export const routes = async (collections : string[]) => {
       {
         method: `GET`,
         url: `/api/${collection}`,
-        handler: repository.find
+        handler: repository.find,
+        schema: { description: `retrieve all ${plur(collection, 2)}` },
       },
       {
         method: `GET`,
         url: `/api/${collection}/:id`,
-        schema: { params },
-        schemaCompiler: schema => data => Joi.validate(data, schema),
+        schema: { params, description: `retrieve a specific ${collection} by its id` },
         handler: repository.find,
-        attachValidation: true
+        schemaCompiler,
+        attachValidation: true,
       },
       {
         method: `POST`,
         url: `/api/${collection}`,
-        schema: { body },
-        schemaCompiler: schema => data => Joi.validate(data, schema),
+        schema: { body, description: `create a new ${collection}` },
         handler: repository.create,
-        attachValidation: true
+        schemaCompiler,
+        attachValidation: true,
       },
       {
         method: `PUT`,
         url: `/api/${collection}/:id`,
-        schema: { body, params },
-        schemaCompiler: schema => data => Joi.validate(data, schema),
+        schema: { body, params, description: `update a specific ${collection} by its id` },
         handler: repository.update,
-        attachValidation: true
+        schemaCompiler,
+        attachValidation: true,
       },
       {
         method: `DELETE`,
         url: `/api/${collection}/:id`,
-        schema: { params },
-        schemaCompiler: schema => data => Joi.validate(data, schema),
+        schema: { params, description: `delete a specific ${collection} by its id` },
         handler: repository.delete,
-        attachValidation: true
-      }
+        schemaCompiler,
+        attachValidation: true,
+      },
     ]
     api = [...api, ...routes]
   }

@@ -1,5 +1,5 @@
 import * as Joi from 'joi'
-import { _id, __v } from '../validation'
+import { __v, _id } from '../validation'
 export const body = Joi
 .object()
 .keys({
@@ -8,14 +8,18 @@ export const body = Joi
   latitude: Joi
   .number()
   .greater(0)
-  .required(),
+  .required()
+  .description('latitude of the location'),
   longitude: Joi
   .number()
   .greater(0)
-  .required(),
+  .required()
+  .description('longitude of the location'),
 })
+.required()
 export const params = Joi
 .object()
 .keys({
   id: _id,
 })
+.required()

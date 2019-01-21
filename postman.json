@@ -8,72 +8,292 @@
 	},
 	"item": [
 		{
-			"name": "GET /api/at",
-			"request": {
-				"url": "http://127.0.0.1:3000/api/at",
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "GET /api/at/:id",
-			"request": {
-				"url": "http://127.0.0.1:3000/api/at/000000000000000000000001",
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "POST /api/at",
-			"request": {
-				"url": "http://127.0.0.1:3000/api/at",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
+			"name": "at",
+			"description": "locations",
+			"item": [
+				{
+					"name": "GET /api/at",
+					"request": {
+						"url": "http://127.0.0.1:3000/api/at",
+						"method": "GET",
+						"header": [],
+						"body": {},
 						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"_id\": \"000000000000000000000002\", \"latitude\":1,\"longitude\":2}"
+					},
+					"response": []
 				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "PUT /api/at/:id",
-			"request": {
-				"url": "http://127.0.0.1:3000/api/at/000000000000000000000002",
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
+				{
+					"name": "GET /api/at/:id",
+					"request": {
+						"url": "http://127.0.0.1:3000/api/at/000000000000000000000001",
+						"method": "GET",
+						"header": [],
+						"body": {},
 						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"latitude\":3,\"longitude\":4}"
+					},
+					"response": []
 				},
-				"description": ""
-			},
-			"response": []
+				{
+					"name": "GET /api/at/:id 🚫",
+					"request": {
+						"url": "http://127.0.0.1:3000/api/at/000000000000000000wrong1",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "POST /api/at",
+					"request": {
+						"url": "http://127.0.0.1:3000/api/at",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"_id\": \"000000000000000000000002\", \"latitude\":1,\"longitude\":2}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "POST /api/at 🚫",
+					"request": {
+						"url": "http://127.0.0.1:3000/api/at",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"_id\": \"000000000000000000wrong2\", \"latitude\":1,\"longitude\":2}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /api/at/:id",
+					"request": {
+						"url": "http://127.0.0.1:3000/api/at/000000000000000000000002",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"latitude\":3,\"longitude\":4}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /api/at/:id 🚫",
+					"request": {
+						"url": "http://127.0.0.1:3000/api/at/000000000000000000wrong2",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"latitude\":3,\"longitude\":4}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /api/at/:id",
+					"request": {
+						"url": "http://127.0.0.1:3000/api/at/000000000000000000000002",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /api/at/:id 🚫",
+					"request": {
+						"url": "http://127.0.0.1:3000/api/at/000000000000000000wrong2",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
 		},
 		{
-			"name": "DELETE /api/at/:id",
+			"name": "company",
+			"description": "locations",
+			"item": [
+				{
+					"name": "GET /api/company",
+					"request": {
+						"url": "http://127.0.0.1:3000/api/company",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET /api/company/:id",
+					"request": {
+						"url": "http://127.0.0.1:3000/api/company/000000000000000000000001",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET /api/company/:id 🚫",
+					"request": {
+						"url": "http://127.0.0.1:3000/api/company/000000000000000000wrong1",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "POST /api/company",
+					"request": {
+						"url": "http://127.0.0.1:3000/api/company",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"_id\": \"000000000000000000000003\", \"at_id\": \"000000000000000000000001\", \"name\":\"Third company\"}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "POST /api/company 🚫",
+					"request": {
+						"url": "http://127.0.0.1:3000/api/company",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"_id\": \"000000000000000000wrong3\", \"at_id\": \"000000000000000000000001\", \"name\":\"Third company\"}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /api/company/:id",
+					"request": {
+						"url": "http://127.0.0.1:3000/api/company/000000000000000000000002",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"at_id\": \"000000000000000000000001\", \"name\":\"Another company\"}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /api/company/:id 🚫",
+					"request": {
+						"url": "http://127.0.0.1:3000/api/company/000000000000000000wrong2",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"at_id\": \"000000000000000000000001\", \"name\":\"Another company\"}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /api/company/:id",
+					"request": {
+						"url": "http://127.0.0.1:3000/api/company/000000000000000000000002",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /api/company/:id 🚫",
+					"request": {
+						"url": "http://127.0.0.1:3000/api/company/000000000000000000wrong2",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GET /api/unknown 🚫",
 			"request": {
-				"url": "http://127.0.0.1:3000/api/at/000000000000000000000002",
-				"method": "DELETE",
+				"url": "http://127.0.0.1:3000/api/unknown",
+				"method": "GET",
 				"header": [],
 				"body": {},
 				"description": ""

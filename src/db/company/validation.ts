@@ -1,5 +1,5 @@
 import * as Joi from 'joi'
-import { _id, __v } from '../validation'
+import { __v, _id } from '../validation'
 export const body = Joi
 .object()
 .keys({
@@ -8,7 +8,8 @@ export const body = Joi
   name: Joi
   .string()
   .not('')
-  .required(),
+  .required()
+  .description('name of the company'),
 })
 export const params = Joi
 .object()
