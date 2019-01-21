@@ -1,5 +1,6 @@
 import { environment } from './environment'
 const { SERVER_HOST, SERVER_PORT } = environment
+const convert = require('joi-to-json-schema')
 export const options = {
   routePrefix: '/documentation',
   exposeRoute: true,
@@ -18,4 +19,12 @@ export const options = {
     consumes: ['application/json'],
     produces: ['application/json'],
   },
+  transform: schema => Object.keys(schema)
+  .reduce((o, key) => {
+    o[key] = ['params', 'body', 'querystring'].includes(key)
+    && schema[key].isJoi
+    ? convert(schema[key])
+    : schema[key]
+    return o
+  }, {}),
 }
