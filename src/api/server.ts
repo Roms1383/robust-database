@@ -2,6 +2,7 @@ import * as boom from 'boom'
 import * as Fastify from 'fastify'
 import { IncomingMessage, Server, ServerResponse } from 'http'
 import { AddressInfo } from 'net'
+import { collections } from '../loader'
 import { environment } from './environment'
 const { SERVER_LOGGER, SERVER_PORT, SERVER_HOST } = environment
 import { options } from './documentation'
@@ -13,7 +14,7 @@ const swagger : any = require('fastify-swagger')
 export const run = async () => {
   fastify.register(swagger, options)
   const { routes: builder } = require('./routes')
-  const routes = await builder(['at', 'company'])
+  const routes = await builder(collections)
   routes.forEach((route, index) => {
     fastify.route(route)
   })
