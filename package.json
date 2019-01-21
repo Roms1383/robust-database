@@ -19,7 +19,7 @@
     "dotenv": "^6.2.0",
     "enjoi": "^5.0.1",
     "fastify": "2.0.0-rc.4",
-    "fastify-swagger": "https://github.com/fastify/fastify-swagger#20aab51",
+    "fastify-swagger": "^2.2.0",
     "joi": "^14.3.1",
     "joi-to-json-schema": "^3.5.0",
     "mongoose": "^5.3.13",
