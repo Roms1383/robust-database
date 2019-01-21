@@ -51,7 +51,7 @@
     "use": "yarn seed && node ./using.js",
     "server": "node ./server.js",
     "serve": "yarn seed && yarn server",
-    "test": "yarn seed -d && npx jest --detectOpenHandles --forceExit"
+    "test": "yarn seed -d && npx jest --detectOpenHandles --forceExit --coverage"
   },
   "jest": {
     "coverageDirectory": "./coverage/",
