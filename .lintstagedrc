@@ -1,0 +1,8 @@
+{
+  "lint-staged": {
+    "linters": {
+      "src/**/*.ts": ["yarn lint", "git add"]
+    },
+    "ignore": ["built/**"]
+  }
+}
