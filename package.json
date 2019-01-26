@@ -34,6 +34,7 @@
     "@types/request-promise-native": "^1.0.15",
     "@types/yn": "types/npm-yn",
     "chalk": "^2.4.1",
+    "codacy-coverage": "^3.4.0",
     "commander": "^2.19.0",
     "husky": "^1.3.1",
     "inquirer": "^6.2.1",
@@ -53,7 +54,8 @@
     "use": "yarn seed && node ./using.js",
     "server": "node ./server.js",
     "serve": "yarn seed && yarn server",
-    "test": "yarn seed -d && npx jest --detectOpenHandles --forceExit --coverage"
+    "test": "yarn seed -d && npx jest --detectOpenHandles --forceExit --coverage",
+    "test-with-coverage": "yarn test && cat ./coverage/lcov.info | codacy-coverage"
   },
   "jest": {
     "coverageDirectory": "./coverage/",
