@@ -12,5 +12,4 @@ before_install:
   - export PATH="$HOME/.yarn/bin:$PATH"
 before_script:
   - yarn global add codacy-coverage
-after_success:
-  - cat ./coverage/lcov.info | codacy-coverage
+script: yarn test-with-coverage
