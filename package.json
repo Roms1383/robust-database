@@ -60,5 +60,16 @@
   "jest": {
     "coverageDirectory": "./coverage/",
     "collectCoverage": true
+  },
+  "greenkeeper": {
+    "commitMessages": {
+      "initialBadge": ":memo: Docs: Add Greenkeeper badge",
+      "initialDependencies": ":arrow_up: Upgrade: Update dependencies",
+      "initialBranches": ":rocket: Build: Whitelist greenkeeper branches",
+      "dependencyUpdate": ":arrow_up: Upgrade: Update ${dependency} to version ${version}",
+      "devDependencyUpdate": ":arrow_up: Upgrade: Update ${dependency} to version ${version}",
+      "dependencyPin": ":pushpin: Fix: Pin ${dependency} to ${oldVersion}",
+      "devDependencyPin": ":pushpin: Fix: Pin ${dependency} to ${oldVersion}"
+    }
   }
 }
