@@ -51,7 +51,9 @@ All collection folders are automatically tested using the seeds.
 
 Tests are also run after each push on [Travis CI](https://travis-ci.org/Roms1383/robust-database).
 
-Code coverage is updated on [Codecov](https://codecov.io/gh/Roms1383/robust-database) after each successful CI build.
+Code coverage is updated on [Codacy](https://app.codacy.com/project/Roms1383/robust-database/dashboard) after each successful CI build.
+
+Dependencies are kept up-to-date with [Greenkeeper](https://account.greenkeeper.io/account/Roms1383).
 
 ### :clipboard: documentation
 
@@ -102,6 +104,8 @@ SERVER_LOGGER=false
 
 ## available commands
 
+*  `lint` : lint the TypeScript files into `src` folder
+   *  execute **tslint** command
 *  `build` : build the TypeScript files into a `built` folder
    *  execute **tsc** command
 *  `seed` : seed the Mongo DB from the `seeds.ts` located in the collections folders
@@ -119,6 +123,9 @@ SERVER_LOGGER=false
 *  `test` : run  integration tests
    *  execute `seed` command
    *  execute **jest** command
+*  `test-with-coverage` : run  integration tests, generate code coverage report and send it to [Codacy](https://app.codacy.com/project/Roms1383/robust-database/dashboard) (used in [Travis CI](https://travis-ci.org/Roms1383/robust-database))
+   *  execute `test` command
+   *  execute **codacy-coverage** command
 
 ## Postman
 
