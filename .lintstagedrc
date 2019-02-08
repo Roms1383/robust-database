@@ -1,8 +1,6 @@
-{
-  "lint-staged": {
-    "linters": {
-      "src/**/*.ts": ["yarn lint", "git add"]
-    },
-    "ignore": ["built/**"]
-  }
-}
+linters:
+  'src/**/*.ts':
+    - tslint --fix -c tslint.json
+    - git add
+ignore:
+  - 'built/**'
