@@ -53,7 +53,7 @@ Tests are also run after each push on [Travis CI](https://travis-ci.org/Roms1383
 
 Code coverage is updated on [Codacy](https://app.codacy.com/project/Roms1383/robust-database/dashboard) after each successful CI build.
 
-Dependencies are kept up-to-date with [Greenkeeper](https://account.greenkeeper.io/account/Roms1383).
+Dependencies are kept up-to-date with [Greenkeeper](https://greenkeeper.io).
 
 ### :clipboard: documentation
 
