@@ -7,6 +7,7 @@
     "rules": {
         "indent": [true, "spaces", 2],
         "semicolon": [true, "never"],
+        "no-unnecessary-initializer": false,
         "object-literal-sort-keys": false,
         "ban-types": false,
         "no-var-requires": false,
