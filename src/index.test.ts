@@ -126,12 +126,15 @@ describe('api', async () => {
         })
         if (virtuals) {
           for (const { ref, localField } of virtuals) {
+            const related : any = require(`./db/${ref}`)
+            related.last = +(related.seeds[ related.seeds.length - 1]._id.toString())
+            related.unknown = Types.ObjectId(pad(related.last + 2))
             it(`cannot update with unknown '${ref}'`, async () => {
               expect(
                 request({
                   json: true,
                   url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/${next}`,
-                  body: { ...update, [localField]: 'a1a1a1a1a1a1a1a1a1a1a1a1' },
+                  body: { ...update, [localField]: related.unknown },
                   method: 'PUT',
                 }),
               ).rejects.toThrowError()
