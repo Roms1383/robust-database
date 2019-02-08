@@ -7,4 +7,5 @@ export const environment = {
   SERVER_HOST: process.env.SERVER_HOST || 'localhost',
   SERVER_PORT: +process.env.SERVER_PORT || 3000,
   SERVER_LOGGER: yn(process.env.SERVER_LOGGER) || false,
+  NODE_ENV: process.env.NODE_ENV || 'production',
 }

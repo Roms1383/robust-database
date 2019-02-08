@@ -20,7 +20,7 @@ describe('api', async () => {
   })
   for (const collection of collections) {
     describe(chalk.blue(collection), async () => {
-      const { seeds, unit } = require(`./db/${collection}`)
+      const { seeds, unit, virtuals = undefined } = require(`./db/${collection}`)
       const last = +(seeds[ seeds.length - 1]._id.toString())
       const pad = s => {
         const size = 24 // length of chars of an ObjectId
@@ -53,6 +53,14 @@ describe('api', async () => {
             method: 'GET',
           })
           expect(output).toEqual(expected)
+        })
+        it('cannot find malformed', async () => {
+          expect(request({
+            json: true,
+            url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/wrong`,
+            method: 'GET',
+          })
+          ).rejects.toThrowError()
         })
       })
       describe('create', async () => {
@@ -116,7 +124,21 @@ describe('api', async () => {
             }),
           ).rejects.toThrowError()
         })
-        it('cannot update unknown', async () => {
+        if (virtuals) {
+          for (const { ref, localField } of virtuals) {
+            it(`cannot update with unknown '${ref}'`, async () => {
+              expect(
+                request({
+                  json: true,
+                  url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/${next}`,
+                  body: { ...update, [localField]: 'a1a1a1a1a1a1a1a1a1a1a1a1' },
+                  method: 'PUT',
+                }),
+              ).rejects.toThrowError()
+            })
+          }
+        }
+        it('cannot update unknown id', async () => {
           output = await request({
             json: true,
             url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/${unknown}`,
@@ -145,12 +167,12 @@ describe('api', async () => {
           expect(output).toEqual(null)
         })
         it('cannot delete unknown', async () => {
-          output = await request({
+          expect(request({
             json: true,
             url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/${unknown}`,
             method: 'DELETE',
           })
-          expect(output).toEqual(null)
+          ).rejects.toThrowError()
         })
       })
     })
