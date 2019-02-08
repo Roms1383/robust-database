@@ -8,7 +8,7 @@ export const body = Joi
   .not('')
   .required()
   .description('name of the company'),
-  at_id: _id
+  at_id: _id,
 })
 .required()
 export const params = Joi

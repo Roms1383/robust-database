@@ -41,7 +41,7 @@ export const run = async () => {
   routes.forEach((route, index) => {
     fastify.route(route)
   })
-  
+
   await fastify.listen(SERVER_PORT, SERVER_HOST)
   fastify['swagger']()
   const { port } = fastify.server.address() as AddressInfo

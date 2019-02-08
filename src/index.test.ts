@@ -20,7 +20,7 @@ describe('api', async () => {
   })
   for (const collection of collections) {
     describe(chalk.blue(collection), async () => {
-      const { seeds, unit, virtuals = undefined } = require(`./db/${collection}`)
+      const { seeds, unit, virtuals } = require(`./db/${collection}`)
       const last = +(seeds[ seeds.length - 1]._id.toString())
       const pad = s => {
         const size = 24 // length of chars of an ObjectId
@@ -59,7 +59,7 @@ describe('api', async () => {
             json: true,
             url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/wrong`,
             method: 'GET',
-          })
+          }),
           ).rejects.toThrowError()
         })
       })
@@ -171,7 +171,7 @@ describe('api', async () => {
             json: true,
             url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/${unknown}`,
             method: 'DELETE',
-          })
+          }),
           ).rejects.toThrowError()
         })
       })

@@ -1,5 +1,5 @@
 import * as boom from 'boom'
-import { Document, Model, Connection, Schema } from 'mongoose'
+import { Connection, Document, Model, Schema } from 'mongoose'
 
 export class Repository {
   private model : Model<Document>
@@ -19,7 +19,7 @@ export class Repository {
   public create = async (req, reply) : Promise<Object[]|Error> => {
     try {
       const { body: document } = req
-      const [found = undefined] = await this.model.find(document).lean(true)
+      const [found] = await this.model.find(document).lean(true)
       if (found) throw boom.conflict(`document already exists: ${JSON.stringify(found)}`)
       const inserted = await this.model.insertMany([document])
       return inserted.map(document => document.toObject())

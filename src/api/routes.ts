@@ -6,7 +6,7 @@ const plur = require('plur')
 export const routes = async (collections : string[]) => {
   let api = []
   for (const collection of collections) {
-    const { schema, body, params, virtuals = undefined } = require(`../db/${collection}`)
+    const { schema, body, params, virtuals } = require(`../db/${collection}`)
     const connection = await connect()
     const repository = new Repository(connection, schema, collection, virtuals)
     const routes = [
