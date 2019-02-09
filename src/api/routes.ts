@@ -22,7 +22,6 @@ export const routes = async (collections : string[]) => {
         schema: { params, description: `retrieve a specific ${collection} by its id` },
         handler: repository.find,
         schemaCompiler,
-        attachValidation: true,
       },
       {
         method: `POST`,
@@ -30,7 +29,6 @@ export const routes = async (collections : string[]) => {
         schema: { body, description: `create a new ${collection}` },
         handler: repository.create,
         schemaCompiler,
-        attachValidation: true,
       },
       {
         method: `PUT`,
@@ -38,7 +36,6 @@ export const routes = async (collections : string[]) => {
         schema: { body, params, description: `update a specific ${collection} by its id` },
         handler: repository.update,
         schemaCompiler,
-        attachValidation: true,
       },
       {
         method: `DELETE`,
@@ -46,7 +43,6 @@ export const routes = async (collections : string[]) => {
         schema: { params, description: `delete a specific ${collection} by its id` },
         handler: repository.delete,
         schemaCompiler,
-        attachValidation: true,
       },
     ]
     api = [...api, ...routes]

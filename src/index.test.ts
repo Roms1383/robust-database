@@ -1,15 +1,11 @@
 import chalk from 'chalk'
-import { ObjectID } from 'mongodb'
 import { Types } from 'mongoose'
 import * as request from 'request-promise-native'
 import { environment } from './api/environment'
 import { run } from './api/server'
 import { collections } from './loader'
+import { format, pad } from './test-utils'
 const { SERVER_HOST, SERVER_PORT } = environment
-const format = document => Object.keys(document).reduce((object, key) => document[key] instanceof ObjectID
-? { ...object, [key]: document[key].toString() }
-: { ...object, [key]: document[key] }
-, {})
 let fastify
 describe('api', async () => {
   beforeAll(async () => {
@@ -22,18 +18,12 @@ describe('api', async () => {
     describe(chalk.blue(collection), async () => {
       const { seeds, unit, virtuals } = require(`./db/${collection}`)
       const last = +(seeds[ seeds.length - 1]._id.toString())
-      const pad = s => {
-        const size = 24 // length of chars of an ObjectId
-        s = `${s}`
-        while (s.length < (size || 2)) {s = '0' + s }
-        return s
-      }
       const first =  Types.ObjectId('000000000000000000000001')
-      const next = Types.ObjectId(pad(last + 1))
       const unknown = Types.ObjectId(pad(last + 2))
-      const { create, update, malformed } = unit(next)
+      const { create, update, malformed } = unit
       let output
       let expected
+      let created
       describe('find', async () => {
         it('find all', async () => {
           expected = seeds.map(format)
@@ -72,16 +62,21 @@ describe('api', async () => {
             body: create,
             method: 'POST',
           })
-          expect(output).toEqual(expected)
+          created = output[0]._id.toString()
+          for (const index in expected) {
+            for (const prop in expected) {
+              expect(output[index]).toHaveProperty(prop, expected[index][prop])
+            }
+          }
         })
         it('created correctly', async () => {
           expected = format(create)
           output = await request({
             json: true,
-            url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/${next}`,
+            url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/${created}`,
             method: 'GET',
           })
-          expect(output).toEqual(expected)
+          expect(output).toBeDefined()
         })
         it('cannot create malformed', async () => {
           expect(
@@ -99,26 +94,30 @@ describe('api', async () => {
           expected = format(update)
           output = await request({
             json: true,
-            url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/${next}`,
+            url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/${created}`,
             body: update,
             method: 'PUT',
           })
-          expect(output).toEqual(expected)
+          for (const prop in expected) {
+            expect(output).toHaveProperty(prop, expected[prop])
+          }
         })
         it('updated correctly', async () => {
           expected = format(update)
           output = await request({
             json: true,
-            url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/${next}`,
+            url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/${created}`,
             method: 'GET',
           })
-          expect(output).toEqual(expected)
+          for (const prop in expected) {
+            expect(output).toHaveProperty(prop, expected[prop])
+          }
         })
         it('cannot update malformed', async () => {
           expect(
             request({
               json: true,
-              url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/${next}`,
+              url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/${created}`,
               body: malformed,
               method: 'PUT',
             }),
@@ -133,7 +132,7 @@ describe('api', async () => {
               expect(
                 request({
                   json: true,
-                  url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/${next}`,
+                  url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/${created}`,
                   body: { ...update, [localField]: related.unknown },
                   method: 'PUT',
                 }),
@@ -156,15 +155,17 @@ describe('api', async () => {
           expected = format(update)
           output = await request({
             json: true,
-            url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/${next}`,
+            url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/${created}`,
             method: 'DELETE',
           })
-          expect(output).toEqual(expected)
+          for (const prop in expected) {
+            expect(output).toHaveProperty(prop, expected[prop])
+          }
         })
         it('deleted correctly', async () => {
           output = await request({
             json: true,
-            url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/${next}`,
+            url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/${created}`,
             method: 'GET',
           })
           expect(output).toEqual(null)

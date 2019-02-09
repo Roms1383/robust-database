@@ -34,7 +34,8 @@
                 "variable-declaration": "onespace"
               }
         ],
-        "no-string-literal": false
+        "no-string-literal": false,
+        "forin": false
     },
     "rulesDirectory": []
 }
