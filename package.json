@@ -51,13 +51,13 @@
   "scripts": {
     "lint": "tslint --fix -c tslint.json 'src/**/*.ts'",
     "build": "rm -rf ./built/ && yarn tsc",
+    "postman": "yarn build && node ./postman.js",
     "seed": "yarn build && node ./seeding.js",
     "use": "yarn seed && node ./using.js",
     "server": "node ./server.js",
     "serve": "yarn seed && node ./postman.js && yarn server",
     "test": "yarn seed -d && npx jest --detectOpenHandles --forceExit --coverage",
-    "test-with-coverage": "yarn test && cat ./coverage/lcov.info | codacy-coverage",
-    "postman": "yarn build && node ./postman.js"
+    "test-with-coverage": "yarn test && cat ./coverage/lcov.info | codacy-coverage"
   },
   "jest": {
     "coverageDirectory": "./coverage/",

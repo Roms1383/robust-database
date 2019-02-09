@@ -108,6 +108,9 @@ SERVER_LOGGER=false
    *  execute **tslint** command
 *  `build` : build the TypeScript files into a `built` folder
    *  execute **tsc** command
+*  `postman`: auto-generate `postman.json` to import into [Postman](https://www.getpostman.com)
+   *  execute `build` command
+   *  execute **postman.js** file
 *  `seed` : seed the Mongo DB from the `seeds.ts` located in the collections folders
    *  execute `build` command
    *  execute **seeding.js** file
@@ -119,6 +122,7 @@ SERVER_LOGGER=false
    *  execute **server.js** file
 *  `serve`
    *  execute `seed` command
+   *  execute **postman.js** file
    *  execute `server` command
 *  `test` : run  integration tests
    *  execute `seed` command
@@ -130,11 +134,11 @@ SERVER_LOGGER=false
 ## Postman
 
 You can also :
-1.  seed database and run the server :
+1.  seed database, auto-generate `postman.json` and run the server :
     ```shell
     yarn serve
     ```
-2.  import `postman.json` into [Postman](https://www.getpostman.com)
+2.  import freshly generated `postman.json` into [Postman](https://www.getpostman.com)
 3.  quickly test the endpoints yourself
 
 ---
