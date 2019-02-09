@@ -1,11 +1,24 @@
+import { ObjectID } from 'bson'
 import chalk from 'chalk'
 import { Types } from 'mongoose'
 import * as request from 'request-promise-native'
 import { environment } from './api/environment'
 import { run } from './api/server'
 import { collections } from './loader'
-import { format, pad } from './test-utils'
 const { SERVER_HOST, SERVER_PORT } = environment
+
+const format = document => Object.keys(document)
+.reduce((object, key) => document[key] instanceof ObjectID
+? { ...object, [key]: document[key].toString() }
+: { ...object, [key]: document[key] }
+, {})
+const pad = s => {
+  const size = 24 // length of chars of an ObjectId
+  s = `${s}`
+  while (s.length < (size || 2)) {s = '0' + s }
+  return s
+}
+
 let fastify
 describe('api', async () => {
   beforeAll(async () => {
@@ -64,9 +77,7 @@ describe('api', async () => {
           })
           created = output[0]._id.toString()
           for (const index in expected) {
-            for (const prop in expected) {
-              expect(output[index]).toHaveProperty(prop, expected[index][prop])
-            }
+            expect(output[index]).toMatchObject(expected[index])
           }
         })
         it('created correctly', async () => {
@@ -98,9 +109,7 @@ describe('api', async () => {
             body: update,
             method: 'PUT',
           })
-          for (const prop in expected) {
-            expect(output).toHaveProperty(prop, expected[prop])
-          }
+          expect(output).toMatchObject(expected)
         })
         it('updated correctly', async () => {
           expected = format(update)
@@ -109,9 +118,7 @@ describe('api', async () => {
             url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/${created}`,
             method: 'GET',
           })
-          for (const prop in expected) {
-            expect(output).toHaveProperty(prop, expected[prop])
-          }
+          expect(output).toMatchObject(expected)
         })
         it('cannot update malformed', async () => {
           expect(
@@ -158,9 +165,7 @@ describe('api', async () => {
             url: `http://${SERVER_HOST}:${SERVER_PORT}/api/${collection}/${created}`,
             method: 'DELETE',
           })
-          for (const prop in expected) {
-            expect(output).toHaveProperty(prop, expected[prop])
-          }
+          expect(output).toMatchObject(expected)
         })
         it('deleted correctly', async () => {
           output = await request({
