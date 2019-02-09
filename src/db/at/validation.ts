@@ -3,8 +3,6 @@ import { __v, _id } from '../validation'
 export const body = Joi
 .object()
 .keys({
-  _id,
-  __v,
   latitude: Joi
   .number()
   .greater(0)

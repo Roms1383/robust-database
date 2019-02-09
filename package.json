@@ -24,6 +24,7 @@
     "joi-to-json-schema": "^3.5.0",
     "mongoose": "^5.3.13",
     "plur": "^3.0.1",
+    "ramda": "^0.26.1",
     "winston": "^3.1.0",
     "yn": "^3.0.0"
   },
@@ -53,9 +54,10 @@
     "seed": "yarn build && node ./seeding.js",
     "use": "yarn seed && node ./using.js",
     "server": "node ./server.js",
-    "serve": "yarn seed && yarn server",
+    "serve": "yarn seed && node ./postman.js && yarn server",
     "test": "yarn seed -d && npx jest --detectOpenHandles --forceExit --coverage",
-    "test-with-coverage": "yarn test && cat ./coverage/lcov.info | codacy-coverage"
+    "test-with-coverage": "yarn test && cat ./coverage/lcov.info | codacy-coverage",
+    "postman": "yarn build && node ./postman.js"
   },
   "jest": {
     "coverageDirectory": "./coverage/",

@@ -17,15 +17,11 @@ export class Repository {
     : this.model.find({}).lean(true)
   }
   public create = async (req, reply) : Promise<Object[]|Error> => {
-    try {
-      const { body: document } = req
-      const [found] = await this.model.find(document).lean(true)
-      if (found) throw boom.conflict(`document already exists: ${JSON.stringify(found)}`)
-      const inserted = await this.model.insertMany([document])
-      return inserted.map(document => document.toObject())
-    } catch (e) {
-      throw boom.boomify(e)
-    }
+    const { body: document } = req
+    const [found] = await this.model.find(document).lean(true)
+    if (found) throw boom.conflict(`document already exists: ${JSON.stringify(found)}`)
+    const inserted = await this.model.insertMany([document])
+    return inserted.map(document => document.toObject())
   }
   public update = async (req, reply) : Promise<Object|Error> => {
     try {

@@ -4,3 +4,4 @@ import { definition } from './definition'
 export { seeds, unit } from './seeds'
 export const schema : Schema = new Schema(definition, { collection: 'at' })
 export { body, params } from './validation'
+export const description = 'location'
