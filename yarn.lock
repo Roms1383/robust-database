@@ -2605,10 +2605,10 @@ jest@^24.1.0:
     import-local "^2.0.0"
     jest-cli "^24.1.0"
 
-joi-to-json-schema@^3.5.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/joi-to-json-schema/-/joi-to-json-schema-3.5.0.tgz#dccc97b48e4a1004cce7dccb7bfe572aeace758f"
-  integrity sha512-Ot6FuZoctnXAJ0mQGdX/Ls6p6UGJXZST3lHfLabdBjNqdeph22MEvs5UMDq1/wg47dEgqwWqgen3EZL30/jKeA==
+joi-to-json-schema@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/joi-to-json-schema/-/joi-to-json-schema-4.0.0.tgz#2b5e2a6352d78b381d832e37568be88a842b32a4"
+  integrity sha512-3dlbsiSZED0COSe3FFoX3yxp9QeLRZgwAI/tjpmuxBOe1xH3C2Gy7cQRa0A/cGifwe02gYOPVXL3pu5t+ZL4Ow==
 
 joi@^13.x:
   version "13.7.0"
