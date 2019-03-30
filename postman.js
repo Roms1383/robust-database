@@ -47,17 +47,9 @@ const item = () => {
   const content = []
   for (const collection of collections) {
     const exported = require(`./built/db/${collection}`)
-    const { seeds, unit } = exported
-    const last = +(seeds[ seeds.length - 1]._id.toString())
-    const pad = s => {
-      const size = 24 // length of chars of an ObjectId
-      s = `${s}`
-      while (s.length < (size || 2)) {s = '0' + s }
-      return s
-    }
+    const { unit } = exported
     const first =  Types.ObjectId('000000000000000000000001')
-    const next = Types.ObjectId(pad(last + 1))
-    const set = unit(next)
+    const set = unit
     const { create, update, malformed } = Object.keys(set)
     .reduce((unit, key) => {
       const original = set[key]
