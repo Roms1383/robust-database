@@ -59,10 +59,6 @@
     "test": "yarn seed -d && npx jest --detectOpenHandles --forceExit --coverage",
     "test-with-coverage": "yarn test && cat ./coverage/lcov.info | codacy-coverage"
   },
-  "jest": {
-    "coverageDirectory": "./coverage/",
-    "collectCoverage": true
-  },
   "greenkeeper": {
     "commitMessages": {
       "initialBadge": ":memo: Docs: Add Greenkeeper badge",

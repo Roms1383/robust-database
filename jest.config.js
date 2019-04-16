@@ -12,5 +12,7 @@ module.exports = {
     "json",
     "node"
   ],
-  testEnvironment: 'node'
+  testEnvironment: 'node',
+  coverageDirectory: './coverage/',
+  collectCoverage: true
 }
