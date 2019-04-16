@@ -55,6 +55,8 @@ Code coverage is updated on [Codacy](https://app.codacy.com/project/Roms1383/rob
 
 Dependencies are kept up-to-date with [Greenkeeper](https://greenkeeper.io).
 
+Dependencies vulnerabilities are monitored with [Snyk](https://snyk.io/test/github/Roms1383/robust-database).
+
 ### :clipboard: documentation
 
 API documentation is automatically generated with [fastify-swagger](https://github.com/fastify/fastify-swagger).
