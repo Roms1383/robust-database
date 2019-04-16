@@ -42,6 +42,7 @@
     "mongo-seeding": "^3.0.0",
     "mongodb": "^3.1.10",
     "request-promise-native": "^1.0.5",
+    "snyk": "^1.151.0",
     "ts-jest": "^24.0.0",
     "tslint": "^5.12.1",
     "typescript": "^3.2.2"
@@ -54,7 +55,8 @@
     "use": "yarn seed && node ./using.js",
     "server": "node ./server.js",
     "serve": "yarn seed && node ./postman.js && yarn server",
-    "test": "yarn seed -d && npx jest --detectOpenHandles --forceExit --coverage",
+    "vulnerabilities": "yarn snyk test",
+    "test": "yarn vulnerabilities && yarn seed -d && npx jest --detectOpenHandles --forceExit --coverage",
     "test-with-coverage": "yarn test && cat ./coverage/lcov.info | codacy-coverage"
   },
   "jest": {
