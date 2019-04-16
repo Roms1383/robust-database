@@ -126,10 +126,13 @@ SERVER_LOGGER=false
    *  execute `seed` command
    *  execute **postman.js** file
    *  execute `server` command
-*  `test` : run  integration tests
+*  `vulnerabilities` : run dependencies vulnerabilities check with [Snyk](https://snyk.io/test/github/Roms1383/robust-database)
+   *  execute **snyk test** command
+*  `test` : run integration tests
+   *  execute `vulnerabilities` command
    *  execute `seed` command
    *  execute **jest** command
-*  `test-with-coverage` : run  integration tests, generate code coverage report and send it to [Codacy](https://app.codacy.com/project/Roms1383/robust-database/dashboard) (used in [Travis CI](https://travis-ci.org/Roms1383/robust-database))
+*  `test-with-coverage` : run integration tests, generate code coverage report and send it to [Codacy](https://app.codacy.com/project/Roms1383/robust-database/dashboard) (used in [Travis CI](https://travis-ci.org/Roms1383/robust-database))
    *  execute `test` command
    *  execute **codacy-coverage** command
 
