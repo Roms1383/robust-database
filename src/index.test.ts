@@ -20,7 +20,7 @@ const pad = s => {
 }
 
 let fastify
-describe('api', async () => {
+describe('api', () => {
   beforeAll(async () => {
     fastify = await run()
   })
@@ -28,7 +28,7 @@ describe('api', async () => {
     await fastify.close()
   })
   for (const collection of collections) {
-    describe(chalk.blue(collection), async () => {
+    describe(chalk.blue(collection), () => {
       const { seeds, unit, virtuals } = require(`./db/${collection}`)
       const last = +(seeds[ seeds.length - 1]._id.toString())
       const first =  Types.ObjectId('000000000000000000000001')
@@ -37,7 +37,7 @@ describe('api', async () => {
       let output
       let expected
       let created
-      describe('find', async () => {
+      describe('find', () => {
         it('find all', async () => {
           expected = seeds.map(format)
           output = await request({
@@ -66,7 +66,7 @@ describe('api', async () => {
           ).rejects.toThrowError()
         })
       })
-      describe('create', async () => {
+      describe('create', () => {
         it('can create', async () => {
           expected = [format(create)]
           output = await request({
@@ -100,7 +100,7 @@ describe('api', async () => {
           ).rejects.toThrowError()
         })
       })
-      describe('update', async () => {
+      describe('update', () => {
         it('can update', async () => {
           expected = format(update)
           output = await request({
@@ -157,7 +157,7 @@ describe('api', async () => {
           expect(output).toEqual(null)
         })
       })
-      describe('delete', async () => {
+      describe('delete', () => {
         it('can delete', async () => {
           expected = format(update)
           output = await request({
