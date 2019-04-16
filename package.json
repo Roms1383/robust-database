@@ -55,7 +55,8 @@
     "use": "yarn seed && node ./using.js",
     "server": "node ./server.js",
     "serve": "yarn seed && node ./postman.js && yarn server",
-    "test": "yarn snyk test && yarn seed -d && npx jest --detectOpenHandles --forceExit --coverage",
+    "vulnerabilities": "yarn snyk auth && yarn snyk test",
+    "test": "yarn vulnerabilities && yarn seed -d && npx jest --detectOpenHandles --forceExit --coverage",
     "test-with-coverage": "yarn test && cat ./coverage/lcov.info | codacy-coverage"
   },
   "jest": {
