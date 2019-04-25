@@ -6,6 +6,8 @@
 
 This repository was created as a proof of concept for good practices when creating a Rest API to manage an underlying Mongo database in a Node.js environment.
 
+It's heavily inspired by existing online articles, especially this [one](https://medium.freecodecamp.org/how-to-build-blazing-fast-rest-apis-with-node-js-mongodb-fastify-and-swagger-114e062db0c9) by [Siegfried Grimbeek](https://medium.freecodecamp.org/@siegoboy).
+
 ## goals
 *  _use strongly-typed data_
 *  _quickly generate database with existing customizable data sets_
