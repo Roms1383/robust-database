@@ -2,8 +2,8 @@ import * as Joi from 'joi'
 import { environment } from '../api/environment'
 const { NODE_ENV } = environment
 const OBJECTID = NODE_ENV === 'test'
-? /^[a-f\d]{24}$/i
-: /^(?=[a-f\d]{24}$)(\d+[a-f]|[a-f]+\d)/i
+? /^[a-fA-F\d]{24}$/
+: /^(?=[a-fA-F\d]{24}$)(\d+[a-fA-F]|[a-fA-F]+\d)/
 export const _id = Joi
 .string()
 .regex(OBJECTID)
