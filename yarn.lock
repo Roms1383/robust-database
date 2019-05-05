@@ -1829,7 +1829,7 @@ fastify-static@^2.3.4:
     readable-stream "^3.1.1"
     send "^0.16.0"
 
-fastify-swagger@^2.2.0:
+fastify-swagger@^2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/fastify-swagger/-/fastify-swagger-2.3.2.tgz#a93ef19365326e5ceec0d9002107fd160ddd541d"
   integrity sha512-bHep1P5eV3gwSmx2ALFOGwLVUtUYQitWXt/Hj503g6rR5fyKVErT8GKgi/kpHg2o/H9z9uQV4a3Mm/3tTVEQlA==
