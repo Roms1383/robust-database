@@ -1,7 +1,5 @@
 const { environment } = require('./built/api/environment')
 const { DATABASE_HOST, DATABASE_PORT, DATABASE_NAME } = environment
-const fs = require('fs')
-const path = require('path')
 const chalk = require('chalk')
 const inquirer = require('inquirer')
 const program = require('commander')
@@ -13,7 +11,7 @@ const config = {
     port: DATABASE_PORT,
     name: DATABASE_NAME
   },
-  dropDatabase: true,
+  dropDatabase: true
 }
 const message = `will ${chalk.red('DROP')} then seed database ${chalk.red(config.database.name)} at ${chalk.green(config.database.host)}:${chalk.green(config.database.port)}`
 const seeder = new Seeder(config)
@@ -40,12 +38,11 @@ const run = async () => {
     .version('0.0.1')
     .option('-d, --drop', 'Automatically drop database without asking')
     .parse(process.argv)
-  
+
     if (program.drop) {
       logger.info(message)
       await seed()
-    }
-    else {
+    } else {
       const answer = await inquire()
       if (answer.confirm) await seed()
     }

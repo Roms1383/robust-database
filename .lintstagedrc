@@ -2,5 +2,8 @@ linters:
   'src/**/*.ts':
     - tslint --fix -c tslint.json
     - git add
+  '*.js':
+    - eslint --fix -c .eslintrc
+    - git add
 ignore:
   - 'built/**'

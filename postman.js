@@ -6,10 +6,10 @@ const { Types } = require('mongoose')
 const { environment } = require('./built/api/environment')
 const { SERVER_HOST, SERVER_PORT } = environment
 const { collections } = require('./built/loader')
-const package = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'package.json'), 'utf8'))
+const manifest = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'package.json'), 'utf8'))
 const variables = []
 const info = {
-  name: package.name,
+  name: manifest.name,
   _postman_id: 'cdda3978-c8ee-912d-36b0-4005136e3b1d',
   description: 'Used for the tutorial robust-database',
   schema: 'https://schema.getpostman.com/json/collection/v2.0.0/collection.json'
@@ -48,7 +48,7 @@ const item = () => {
   for (const collection of collections) {
     const exported = require(`./built/db/${collection}`)
     const { unit } = exported
-    const first =  Types.ObjectId('000000000000000000000001')
+    const first = Types.ObjectId('000000000000000000000001')
     const set = unit
     const { create, update, malformed } = Object.keys(set)
     .reduce((unit, key) => {
@@ -77,7 +77,7 @@ const item = () => {
         call({ collection, method: 'PUT', path: { name: 'id', parameter: 'wrong' }, body: update, extra: '🚫' }),
         call({ collection, method: 'PUT', path: { name: 'id', parameter: first.toString() }, body: malformed, extra: '🚫' }),
         call({ collection, method: 'DELETE', path: { name: 'id', parameter: first.toString() } }),
-        call({ collection, method: 'DELETE', path: { name: 'id', parameter: 'wrong' }, extra: '🚫' }),
+        call({ collection, method: 'DELETE', path: { name: 'id', parameter: 'wrong' }, extra: '🚫' })
       ]
     })
   }

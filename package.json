@@ -13,6 +13,7 @@
     "node": ">=8.10.0"
   },
   "dependencies": {
+    "@hapi/joi": "^15.0.3",
     "boom": "^7.3.0",
     "dotenv": "^8.0.0",
     "enjoi": "^6.0.0",
@@ -23,10 +24,12 @@
     "mongoose": "^5.5.3",
     "plur": "^3.0.1",
     "ramda": "^0.26.1",
+    "request": "^2.88.0",
     "winston": "^3.1.0",
     "yn": "^3.0.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^7.6.1",
     "@types/boom": "^7.2.1",
     "@types/jest": "^24.0.0",
     "@types/mongoose": "^5.3.1",
@@ -35,6 +38,14 @@
     "chalk": "^2.4.1",
     "codacy-coverage": "^3.4.0",
     "commander": "^2.19.0",
+    "commitlint-config-kroms": "^1.0.4",
+    "eslint": "^5.16.0",
+    "eslint-config-kroms": "^1.0.3",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-standard": "^4.0.0",
     "husky": "^2.0.0",
     "inquirer": "^6.2.1",
     "jest": "^24.1.0",
@@ -48,7 +59,7 @@
     "typescript": "^3.4.5"
   },
   "scripts": {
-    "lint": "tslint --fix -c tslint.json 'src/**/*.ts'",
+    "lint": "tslint --fix -c tslint.json 'src/**/*.ts' && eslint --fix -c .eslintrc '*.js'",
     "build": "rm -rf ./built/ && yarn tsc",
     "postman": "yarn build && node ./postman.js",
     "seed": "yarn build && node ./seeding.js",
