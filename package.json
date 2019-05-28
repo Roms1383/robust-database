@@ -69,27 +69,5 @@
     "vulnerabilities": "yarn snyk test",
     "test": "yarn seed -d && npx jest --detectOpenHandles --forceExit --coverage",
     "test-with-coverage": "yarn test && cat ./coverage/lcov.info | codacy-coverage"
-  },
-  "greenkeeper": {
-    "commitMessages": {
-      "initialBadge": ":memo: Docs: Add Greenkeeper badge",
-      "initialDependencies": ":arrow_up: Upgrade: Update dependencies",
-      "initialBranches": ":rocket: Build: Whitelist greenkeeper branches",
-      "dependencyUpdate": ":arrow_up: Upgrade: Update ${dependency} to version ${version}",
-      "devDependencyUpdate": ":arrow_up: Upgrade: Update ${dependency} to version ${version}",
-      "dependencyPin": ":pushpin: Fix: Pin ${dependency} to ${oldVersion}",
-      "devDependencyPin": ":pushpin: Fix: Pin ${dependency} to ${oldVersion}",
-      "addConfigFile": ":wrench: Add Greenkeeper config file",
-      "updateConfigFile": ":wrench: Update Greenkeeper config file",
-      "lockfileUpdate": ":arrow_up: Update lockfile ${lockfilePath}"
-    },
-    "prTitles": {
-      "initialPR": ":tada: Update dependencies to enable Greenkeeper :palm_tree:",
-      "initialPrBadge": ":memo: Add badge to enable Greenkeeper :palm_tree:",
-      "initialPrBadgeOnly": ":memo: Add Greenkeeper badge :palm_tree:",
-      "initialSubgroupPR": ":arrow_up: Update dependencies for ${group} :palm_tree:",
-      "basicPR": ":arrow_up: Update ${dependency} to the latest version :rocket:",
-      "groupPR": ":arrow_up: Update ${dependency} in group ${group} to the latest version :rocket:"
-    }
   }
 }
