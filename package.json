@@ -21,7 +21,7 @@
     "fastify-swagger": "^2.3.2",
     "joi": "^14.3.1",
     "joi-to-json-schema": "^5.0.0",
-    "mongoose": "^5.5.3",
+    "mongoose": "^5.5.11",
     "plur": "^3.0.1",
     "ramda": "^0.26.1",
     "request": "^2.88.0",
