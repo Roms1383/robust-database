@@ -55,7 +55,7 @@ Tests are also run after each push on [Travis CI](https://travis-ci.org/Roms1383
 
 Code coverage is updated on [Codacy](https://app.codacy.com/project/Roms1383/robust-database/dashboard) after each successful CI build.
 
-Dependencies are kept up-to-date with [Greenkeeper](https://greenkeeper.io).
+Dependencies are kept up-to-date with [Renovate](https://renovatebot.com).
 
 Dependencies vulnerabilities are monitored with [Snyk](https://snyk.io/test/github/Roms1383/robust-database).
 
