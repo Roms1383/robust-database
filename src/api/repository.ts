@@ -1,4 +1,4 @@
-import * as boom from 'boom'
+import * as boom from '@hapi/boom'
 import { Connection, Document, Model, Schema } from 'mongoose'
 
 export class Repository {

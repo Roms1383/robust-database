@@ -27,11 +27,11 @@ const url = (name, path = undefined) => {
   if (path) parts.push(path.parameter)
   return parts.join('/')
 }
-const header = [{
+const header = [ {
   key: 'Content-Type',
   value: 'application/json',
   description: ''
-}]
+} ]
 const call = ({ collection, method, path = undefined, body = {}, extra = undefined }) => ({
   name: name(collection, method, path, extra),
   request: {
