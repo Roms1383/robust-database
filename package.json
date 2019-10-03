@@ -24,7 +24,7 @@
     "plur": "^3.1.1",
     "ramda": "^0.26.1",
     "request": "^2.88.0",
-    "snyk": "^1.221.1",
+    "snyk": "^1.230.5",
     "winston": "^3.2.1",
     "yn": "^3.1.1"
   },
@@ -68,7 +68,8 @@
     "vulnerabilities": "yarn snyk test",
     "test": "yarn seed -d && npx jest --detectOpenHandles --forceExit --coverage",
     "test-with-coverage": "yarn test && cat ./coverage/lcov.info | codacy-coverage",
-    "snyk-protect": "snyk protect"
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "snyk": true
 }
