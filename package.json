@@ -16,7 +16,7 @@
     "@hapi/boom": "^7.4.3",
     "@hapi/joi": "^15.1.1",
     "dotenv": "^8.1.0",
-    "enjoi": "^6.0.0",
+    "enjoi": "^7.0.0",
     "fastify": "^2.7.1",
     "fastify-swagger": "^2.4.0",
     "joi-to-json-schema": "^5.1.0",
